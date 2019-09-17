@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<tbllogin>
+  <Login>
+    <id>1</id>
+    <name>admin</name>
+    <password>admin</password>
+  </Login>
+<Login>
+    <id>2</id>
+    <name>super</name>
+    <password>super</password>
+  </Login>
+<Login>
+    <id>3</id>
+    <name>pro</name>
+    <password>pro</password>
+  </Login>
+</tbllogin>

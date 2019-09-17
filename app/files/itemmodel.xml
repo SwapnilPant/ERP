@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Items_modeltable>
+  <Items_model>
+    <srno/>
+    <item_code/>
+    <item_name/>
+    <item_quantity/>
+    <item_unit/>
+    <item_unit_price/>
+    <item_price/>
+  
+  </Items_model>
+    
+</Items_modeltable>   

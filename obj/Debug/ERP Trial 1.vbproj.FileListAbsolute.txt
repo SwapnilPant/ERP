@@ -1,0 +1,17 @@
+c:\users\swapnil pant\documents\visual studio 2015\Projects\ERP\ERP Trial 1\bin\Debug\ERP Trial 1.exe.config
+c:\users\swapnil pant\documents\visual studio 2015\Projects\ERP\ERP Trial 1\obj\Debug\ERP_Trial_1.Form1.resources
+c:\users\swapnil pant\documents\visual studio 2015\Projects\ERP\ERP Trial 1\obj\Debug\ERP_Trial_1.Resources.resources
+c:\users\swapnil pant\documents\visual studio 2015\Projects\ERP\ERP Trial 1\obj\Debug\ERP Trial 1.vbproj.GenerateResource.Cache
+c:\users\swapnil pant\documents\visual studio 2015\Projects\ERP\ERP Trial 1\obj\Debug\ERP Trial 1.xml
+c:\users\swapnil pant\documents\visual studio 2015\Projects\ERP\ERP Trial 1\bin\Debug\ERP Trial 1.exe
+c:\users\swapnil pant\documents\visual studio 2015\Projects\ERP\ERP Trial 1\bin\Debug\ERP Trial 1.pdb
+c:\users\swapnil pant\documents\visual studio 2015\Projects\ERP\ERP Trial 1\bin\Debug\ERP Trial 1.xml
+c:\users\swapnil pant\documents\visual studio 2015\Projects\ERP\ERP Trial 1\obj\Debug\ERP Trial 1.exe
+c:\users\swapnil pant\documents\visual studio 2015\Projects\ERP\ERP Trial 1\obj\Debug\ERP Trial 1.pdb
+C:\Users\Swapnil Pant\Documents\Visual Studio 2015\Projects\ERP\ERP Trial 1\obj\Debug\ERP_Trial_1.Menu.resources
+C:\Users\Swapnil Pant\Documents\Visual Studio 2015\Projects\ERP\ERP Trial 1\obj\Debug\ERP_Trial_1.taskbar.resources
+C:\Users\Swapnil Pant\Documents\Visual Studio 2015\Projects\ERP\ERP Trial 1\obj\Debug\ERP_Trial_1.invoiceadd.resources
+C:\Users\Swapnil Pant\Documents\Visual Studio 2015\Projects\ERP\ERP Trial 1\obj\Debug\ERP Trial 1.vbprojResolveAssemblyReference.cache
+C:\Users\Swapnil Pant\Documents\Visual Studio 2015\Projects\ERP\ERP Trial 1\obj\Debug\ERP_Trial_1.addstock.resources
+C:\Users\Swapnil Pant\Documents\Visual Studio 2015\Projects\ERP\ERP Trial 1\obj\Debug\ERP_Trial_1.addvendor.resources
+C:\Users\Swapnil Pant\Documents\Visual Studio 2015\Projects\ERP\ERP Trial 1\obj\Debug\ERP_Trial_1.history.resources
