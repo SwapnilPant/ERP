@@ -58,7 +58,7 @@ Partial Class addstock
         '
         'btnreset
         '
-        Me.btnreset.Location = New System.Drawing.Point(760, 468)
+        Me.btnreset.Location = New System.Drawing.Point(764, 468)
         Me.btnreset.Name = "btnreset"
         Me.btnreset.Size = New System.Drawing.Size(75, 23)
         Me.btnreset.TabIndex = 45
