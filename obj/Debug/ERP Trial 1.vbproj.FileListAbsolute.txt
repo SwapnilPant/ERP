@@ -23,3 +23,4 @@ C:\Users\Swapnil Pant\Documents\Visual Studio 2015\Projects\ERP\ERP Trial 1\bin\
 C:\Users\Swapnil Pant\Documents\Visual Studio 2015\Projects\ERP\ERP Trial 1\bin\Debug\EntityFramework.xml
 C:\Users\Swapnil Pant\Documents\Visual Studio 2015\Projects\ERP\ERP Trial 1\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\Swapnil Pant\Documents\Visual Studio 2015\Projects\ERP\ERP Trial 1\bin\Debug\System.Data.SQLite.xml
+C:\Users\Swapnil Pant\Documents\Visual Studio 2015\Projects\ERP\ERP Trial 1\obj\Debug\ERP_Trial_1.LoginForm1.resources

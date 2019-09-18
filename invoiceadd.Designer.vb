@@ -63,6 +63,7 @@ Partial Class invoiceadd
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.cbxtax = New System.Windows.Forms.ComboBox()
         Me.dgitemdetails = New System.Windows.Forms.DataGridView()
+        Me.btnback = New System.Windows.Forms.Button()
         CType(Me.dgitemdetails, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -402,18 +403,31 @@ Partial Class invoiceadd
         '
         Me.dgitemdetails.AllowUserToAddRows = False
         Me.dgitemdetails.AllowUserToDeleteRows = False
+        Me.dgitemdetails.AllowUserToResizeColumns = False
+        Me.dgitemdetails.AllowUserToResizeRows = False
         Me.dgitemdetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgitemdetails.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
         Me.dgitemdetails.Location = New System.Drawing.Point(46, 297)
         Me.dgitemdetails.Name = "dgitemdetails"
         Me.dgitemdetails.ReadOnly = True
         Me.dgitemdetails.Size = New System.Drawing.Size(749, 101)
         Me.dgitemdetails.TabIndex = 103
         '
+        'btnback
+        '
+        Me.btnback.Location = New System.Drawing.Point(12, 8)
+        Me.btnback.Name = "btnback"
+        Me.btnback.Size = New System.Drawing.Size(75, 23)
+        Me.btnback.TabIndex = 104
+        Me.btnback.Text = "Back"
+        Me.btnback.UseVisualStyleBackColor = True
+        '
         'invoiceadd
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(944, 521)
+        Me.Controls.Add(Me.btnback)
         Me.Controls.Add(Me.dgitemdetails)
         Me.Controls.Add(Me.cbxtax)
         Me.Controls.Add(Me.cbxproductname)
@@ -501,4 +515,5 @@ Partial Class invoiceadd
     Friend WithEvents TextBox1 As TextBox
     Friend WithEvents cbxtax As ComboBox
     Friend WithEvents dgitemdetails As DataGridView
+    Friend WithEvents btnback As Button
 End Class

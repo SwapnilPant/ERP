@@ -1,23 +1,21 @@
-﻿Imports System
-Imports System.Collections.Generic
-Imports System.ComponentModel
-Imports System.Data
-Imports System.Drawing
-Imports System.Text
-Imports System.Windows.Forms
-Imports System.Data.SqlClient
-Imports System.IO
-
-Public Class startdb
-    Public Sub execute()
-        Dim sqlconn As SQLite.SQLiteConnection
-        Dim sqlcomm As SQLite.SQLiteCommand
-        Dim sqldr As SQLite.SQLiteDataReader
-        Dim version As String = Me.GetType.Assembly.GetName.Version.ToString()
+﻿Public Class startdb
+    Public sqlconn As SQLite.SQLiteConnection
+    Public sqlcomm As SQLite.SQLiteCommand
+    Public sqldr As SQLite.SQLiteDataReader
+    Public cryptoclass As Crypto
+    Public Sub New()
         sqlconn = New SQLite.SQLiteConnection("Data Source=database.db;Version=3;New=True;Compress=True;")
+        cryptoclass = New Crypto
         sqlconn.Open()
-        If version = "1.0.0.0" Then
-            sqlcomm = sqlconn.CreateCommand
+        sqlcomm = sqlconn.CreateCommand
+        cryptoclass = New Crypto
+    End Sub
+    Public Sub execute()
+        Dim version As String = Me.GetType.Assembly.GetName.Version.ToString()
+        'sqlconn = New SQLite.SQLiteConnection("Data Source=database.db;Version=3;New=True;Compress=True;")
+        'sqlconn.Open()
+        'sqlcomm = sqlconn.CreateCommand
+        If version < "1.0.0.0" Then
             'stock table
             sqlcomm.CommandText = "Create table tblstock(item_code text primary key,item_category text,description text ," _
                         & "unit_quantity real,unit_price real,tax real,discount real,net_price real," _

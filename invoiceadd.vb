@@ -1,16 +1,20 @@
 ﻿Imports System.IO
 
 Public Class invoiceadd
-    Public ds As New DataSet
-    Public dt As DataTable
-
+    Protected startdb As startdb = New startdb()
     Private Sub invoiceadd_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Dim Path As Array = AppDomain.CurrentDomain.BaseDirectory.ToString.Split("bin")
-        ds.ReadXml(Path(0) + "/app/files/itemmodel.xml")
-        dt = ds.Tables("Items_model")
-        dgitemdetails.DataSource = dt
-        Lblinvoiceno.Text = 1
-
+        Dim dtadd As New DataTable
+        Dim sqldr As SQLite.SQLiteDataReader
+        startdb.sqlcomm.CommandText = "select stk.description as [Prodcut Name],inv.item_rate as [Unit Price]," _
+                                & " inv.item_quantity as [Quantity],inv.discount as [Discount],inv.price as [Total Price] from invoice as inv " _
+                                & "inner join tblstock stk on stk.item_code = inv.item_code order by inv.created_date"
+        Try
+            sqldr = startdb.sqlcomm.ExecuteReader
+            dtadd.Load(sqldr)
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+        dgitemdetails.DataSource = dtadd
 
     End Sub
 
@@ -19,16 +23,26 @@ Public Class invoiceadd
     End Sub
 
     Private Sub dgitemdetails_CellContentClick(sender As Object, e As DataGridViewBindingCompleteEventArgs)
-        dgitemdetails.Columns("srno").HeaderText = "Sr no."
-        dgitemdetails.Columns("item_code").HeaderText = "Item Code"
-        dgitemdetails.Columns("item_name").HeaderText = "Item Name"
-        dgitemdetails.Columns("item_quantity").HeaderText = "Quantity"
-        dgitemdetails.Columns("item_unit").HeaderText = "MRP"
-        dgitemdetails.Columns("item_unit_price").HeaderText = "Rate"
-        dgitemdetails.Columns("item_price").HeaderText = "Amount"
+        'dgitemdetails.Columns("srno").HeaderText = "Sr no."
+        'dgitemdetails.Columns("item_code").HeaderText = "Item Code"
+        'dgitemdetails.Columns("item_name").HeaderText = "Item Name"
+        'dgitemdetails.Columns("item_quantity").HeaderText = "Quantity"
+        'dgitemdetails.Columns("item_unit").HeaderText = "MRP"
+        'dgitemdetails.Columns("item_unit_price").HeaderText = "Rate"
+        'dgitemdetails.Columns("item_price").HeaderText = "Amount"
     End Sub
 
     Private Sub lblpurchaserate_Click(sender As Object, e As EventArgs) Handles lbltotalprice.Click
 
+    End Sub
+
+    Private Sub btnadd_Click(sender As Object, e As EventArgs) Handles btnadd.Click
+
+    End Sub
+
+    Private Sub btnback_Click(sender As Object, e As EventArgs) Handles btnback.Click
+        Dim frmmenu As New Menu
+        frmmenu.Show()
+        Me.Close()
     End Sub
 End Class
