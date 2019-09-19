@@ -1,4 +1,4 @@
-﻿Public Class Menu
+Public Class Menu
     Public form_invoiceadd As New invoiceadd
     Public form_addvendor As New addvendor
     Public form_login As New Form1 'login
@@ -28,6 +28,7 @@
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles btnsettings.Click, btn_Logout.Click
         form_login.Show()
         Me.Close()
+        MyBase.Close()
     End Sub
 
     Private Sub btnadd_Click(sender As Object, e As EventArgs) Handles btnadd.Click

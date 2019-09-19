@@ -1,16 +1,22 @@
-﻿Imports System.IO
+Imports System.IO
 
 Public Class invoiceadd
     Protected startdb As startdb = New startdb()
+    Protected dtadd As New DataTable
+
     Private Sub invoiceadd_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Dim dtadd As New DataTable
         Dim sqldr As SQLite.SQLiteDataReader
+        Dim dtprodlist As New DataTable
+
         startdb.sqlcomm.CommandText = "select stk.description as [Prodcut Name],inv.item_rate as [Unit Price]," _
                                 & " inv.item_quantity as [Quantity],inv.discount as [Discount],inv.price as [Total Price] from invoice as inv " _
                                 & "inner join tblstock stk on stk.item_code = inv.item_code order by inv.created_date"
         Try
             sqldr = startdb.sqlcomm.ExecuteReader
             dtadd.Load(sqldr)
+            startdb.sqlcomm.CommandText = "select item_code as [Product_ID],description as [Product_Description] from tblstock"
+            dtprodlist.Load(sqldr)
+            ComboBox1.DataSource = dtprodlist
         Catch ex As Exception
             MsgBox(ex.Message)
         End Try
@@ -37,7 +43,8 @@ Public Class invoiceadd
     End Sub
 
     Private Sub btnadd_Click(sender As Object, e As EventArgs) Handles btnadd.Click
-
+    dtadd.Rows.Add(cbxproductname.SelectedText.Text.ToString,txtunitprice.Text.ToString,txtquantity.Text.ToString,txtdiscount.Text.ToString,txttotalprice.Text.ToString)
+    dgitemdetails.DataSource = dtadd
     End Sub
 
     Private Sub btnback_Click(sender As Object, e As EventArgs) Handles btnback.Click

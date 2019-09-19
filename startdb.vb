@@ -1,4 +1,4 @@
-﻿Public Class startdb
+Public Class startdb
     Public sqlconn As SQLite.SQLiteConnection
     Public sqlcomm As SQLite.SQLiteCommand
     Public sqldr As SQLite.SQLiteDataReader
@@ -40,6 +40,9 @@
             dt.Load(sqldr)
 
         End If
+        sqlcomm.CommandText = "insert into tblstock (item_code,item_category,unit_quantity,unit_price,tax,discount,net_price) values" _
+                & "(201900001,'Men','100','400','39',20,41900)"
+            sqlcomm.ExecuteNonQuery()
         sqlconn.Close()
     End Sub
 
