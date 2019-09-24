@@ -11,7 +11,6 @@ c:\users\swapnil pant\documents\visual studio 2015\Projects\ERP\ERP Trial 1\obj\
 C:\Users\Swapnil Pant\Documents\Visual Studio 2015\Projects\ERP\ERP Trial 1\obj\Debug\ERP_Trial_1.Menu.resources
 C:\Users\Swapnil Pant\Documents\Visual Studio 2015\Projects\ERP\ERP Trial 1\obj\Debug\ERP_Trial_1.taskbar.resources
 C:\Users\Swapnil Pant\Documents\Visual Studio 2015\Projects\ERP\ERP Trial 1\obj\Debug\ERP_Trial_1.invoiceadd.resources
-C:\Users\Swapnil Pant\Documents\Visual Studio 2015\Projects\ERP\ERP Trial 1\obj\Debug\ERP Trial 1.vbprojResolveAssemblyReference.cache
 C:\Users\Swapnil Pant\Documents\Visual Studio 2015\Projects\ERP\ERP Trial 1\obj\Debug\ERP_Trial_1.addstock.resources
 C:\Users\Swapnil Pant\Documents\Visual Studio 2015\Projects\ERP\ERP Trial 1\obj\Debug\ERP_Trial_1.addvendor.resources
 C:\Users\Swapnil Pant\Documents\Visual Studio 2015\Projects\ERP\ERP Trial 1\obj\Debug\ERP_Trial_1.history.resources
@@ -24,3 +23,4 @@ C:\Users\Swapnil Pant\Documents\Visual Studio 2015\Projects\ERP\ERP Trial 1\bin\
 C:\Users\Swapnil Pant\Documents\Visual Studio 2015\Projects\ERP\ERP Trial 1\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\Swapnil Pant\Documents\Visual Studio 2015\Projects\ERP\ERP Trial 1\bin\Debug\System.Data.SQLite.xml
 C:\Users\Swapnil Pant\Documents\Visual Studio 2015\Projects\ERP\ERP Trial 1\obj\Debug\ERP_Trial_1.LoginForm1.resources
+C:\Users\Swapnil Pant\Documents\Visual Studio 2015\Projects\ERP\ERP Trial 1\obj\Debug\ERP Trial 1.vbprojResolveAssemblyReference.cache

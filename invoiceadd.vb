@@ -2,54 +2,121 @@ Imports System.IO
 
 Public Class invoiceadd
     Protected startdb As startdb = New startdb()
-    Protected dtadd As New DataTable
+    Protected dtadd As DataTable = New DataTable()
 
     Private Sub invoiceadd_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Dim sqldr As SQLite.SQLiteDataReader
         Dim dtprodlist As New DataTable
-
-        startdb.sqlcomm.CommandText = "select stk.description as [Prodcut Name],inv.item_rate as [Unit Price]," _
-                                & " inv.item_quantity as [Quantity],inv.discount as [Discount],inv.price as [Total Price] from invoice as inv " _
-                                & "inner join tblstock stk on stk.item_code = inv.item_code order by inv.created_date"
+        Dim dtprodlistdb As New DataTable
+        cbxtax.Enabled = False
         Try
-            sqldr = startdb.sqlcomm.ExecuteReader
-            dtadd.Load(sqldr)
-            startdb.sqlcomm.CommandText = "select item_code as [Product_ID],description as [Product_Description] from tblstock"
-            dtprodlist.Load(sqldr)
-            ComboBox1.DataSource = dtprodlist
+            dtadd = startdb.setitemstructure()
+            dgitemdetails.DataSource = dtadd
+            cbxproductname.ValueMember = "Product_ID"
+            cbxproductname.DisplayMember = "Product_Description"
+            dtprodlist.Columns.Add("Product_ID")
+            dtprodlist.Columns.Add("Product_Description")
+            Dim R As DataRow = dtprodlist.NewRow
+            R("Product_ID") = "0"
+            R("Product_Description") = "Select Product"
+            dtprodlist.Rows.Add(R)
+            dtprodlistdb = startdb.getProductList
+            dtprodlist.Merge(dtprodlistdb)
+            cbxproductname.DataSource = dtprodlist
+            Lblinvoiceno.Text = startdb.getnextinvoiceno()
         Catch ex As Exception
             MsgBox(ex.Message)
         End Try
-        dgitemdetails.DataSource = dtadd
-
-    End Sub
-
-    Private Sub TextBox1_TextChanged(sender As Object, e As EventArgs)
-
-    End Sub
-
-    Private Sub dgitemdetails_CellContentClick(sender As Object, e As DataGridViewBindingCompleteEventArgs)
-        'dgitemdetails.Columns("srno").HeaderText = "Sr no."
-        'dgitemdetails.Columns("item_code").HeaderText = "Item Code"
-        'dgitemdetails.Columns("item_name").HeaderText = "Item Name"
-        'dgitemdetails.Columns("item_quantity").HeaderText = "Quantity"
-        'dgitemdetails.Columns("item_unit").HeaderText = "MRP"
-        'dgitemdetails.Columns("item_unit_price").HeaderText = "Rate"
-        'dgitemdetails.Columns("item_price").HeaderText = "Amount"
-    End Sub
-
-    Private Sub lblpurchaserate_Click(sender As Object, e As EventArgs) Handles lbltotalprice.Click
-
     End Sub
 
     Private Sub btnadd_Click(sender As Object, e As EventArgs) Handles btnadd.Click
-    dtadd.Rows.Add(cbxproductname.SelectedText.Text.ToString,txtunitprice.Text.ToString,txtquantity.Text.ToString,txtdiscount.Text.ToString,txttotalprice.Text.ToString)
-    dgitemdetails.DataSource = dtadd
+        setTotal(True)
+        cbxtax.Enabled = True
     End Sub
 
     Private Sub btnback_Click(sender As Object, e As EventArgs) Handles btnback.Click
         Dim frmmenu As New Menu
         frmmenu.Show()
         Me.Close()
+    End Sub
+
+    Private Sub cbxproductname_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbxproductname.SelectedIndexChanged
+        If cbxproductname.SelectedIndex <> 0 Then
+            Dim dtdescription As New DataTable
+            dtdescription = startdb.getProductDescription(cbxproductname.SelectedValue.ToString)
+            txtdiscription.Text = dtdescription(0)("description").ToString
+            cbxbaseunit.SelectedItem = dtdescription(0)("base_unit")
+            txtunitprice.Text = dtdescription(0)("unit_price")
+            txtquantity.Text = 1
+        Else
+            clearControl()
+        End If
+    End Sub
+
+    Private Sub btnsave_Click(sender As Object, e As EventArgs) Handles btnsave.Click
+        Dim dtcustomercode As New DataTable
+        Dim dtinvvoice As DataTable = dgitemdetails.DataSource
+        Try
+            dtcustomercode = startdb.savecustomer(txtcustomername.Text.ToString, txtcustomernumber.Text.ToString, txtcustomeraddress.Text.ToString)
+            For Each dr As DataRow In dtinvvoice.Rows
+                startdb.saveinvoice(dtcustomercode(0)(0), dr("Item Code").ToString, dr("Quantity").ToString, dr("Unit Price").ToString, dr("Discount").ToString,
+                                    lbltax.Text.ToString, If(btncash.Checked, "cash", "online"), dr("Total Price"),
+                                      txttotal.Text.ToString, DateTimePicker1.Value.ToString("dd-MM-yyyy"))
+            Next
+        Catch ex As Exception
+        End Try
+        btnreset_Click(sender, e)
+    End Sub
+
+    Protected Function clearControl()
+        cbxproductname.SelectedIndex = 0
+        txtdiscription.Text = ""
+        txtquantity.Text = ""
+        txtdiscount.Text = ""
+        txtunitprice.Text = ""
+        cbxbaseunit.SelectedIndex = 0
+    End Function
+
+    Private Sub btnreset_Click(sender As Object, e As EventArgs) Handles btnreset.Click
+        clearControl()
+        txtcustomername.Text = ""
+        txtcustomernumber.Text = ""
+        txtcustomeraddress.Text = ""
+        txttotal.Text = ""
+        cbxtax.SelectedIndex = 0
+        dgitemdetails.DataSource = Nothing
+        startdb.setitemstructure()
+        lbltax.Text = 0
+        txttotal.Text = 0
+    End Sub
+
+    Private Sub cbxtax_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbxtax.SelectedIndexChanged
+        setTotal(False)
+        If cbxtax.SelectedIndex.ToString <> 0 Then
+            lbltax.Text = Int((Int(txttotal.Text.ToString) * Int(cbxtax.SelectedItem.ToString.Split("%")(0).ToString)) / 100)
+            txttotal.Text = (Int(txttotal.Text.ToString) + Int((Int(txttotal.Text.ToString) * Int(cbxtax.SelectedItem.ToString.Split("%")(0).ToString)) / 100)).ToString
+        End If
+
+    End Sub
+    Protected Function setTotal(ByVal isNew As Boolean)
+        Dim dtgrid As New DataTable
+        Dim strtotal As String = "0"
+        Dim dt As New DataTable
+        dt = startdb.getProductDescription(cbxproductname.SelectedValue.ToString)
+        If isNew Then
+            dtadd.Rows.Add(cbxproductname.SelectedValue.ToString, DirectCast(cbxproductname.SelectedItem, System.Data.DataRowView).Row.ItemArray(cbxproductname.SelectedIndex).ToString, dt(0)("description").ToString,
+                       txtunitprice.Text.ToString, txtquantity.Text.ToString, cbxbaseunit.SelectedItem.ToString,
+                       txtdiscount.Text.ToString, ((Int(txtunitprice.Text.ToString) * Int(txtquantity.Text.ToString)) - Int(txtdiscount.Text.ToString)))
+            dgitemdetails.DataSource = dtadd
+            clearControl()
+        End If
+        dtgrid = dgitemdetails.DataSource
+        For Each dr As DataRow In dtgrid.Rows
+            strtotal = strtotal + dr("Total Price")
+        Next
+        txttotal.Text = strtotal
+    End Function
+
+    Private Sub lbltax_Click(sender As Object, e As EventArgs) Handles lbltax.Click
+
     End Sub
 End Class
