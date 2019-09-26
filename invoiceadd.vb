@@ -11,6 +11,7 @@ Public Class invoiceadd
         Try
             dtadd = startdb.setitemstructure()
             dgitemdetails.DataSource = dtadd
+            Lblinvoiceno.Text = startdb.getnextinvoiceno()
             cbxproductname.ValueMember = "Product_ID"
             cbxproductname.DisplayMember = "Product_Description"
             dtprodlist.Columns.Add("Product_ID")
@@ -22,7 +23,6 @@ Public Class invoiceadd
             dtprodlistdb = startdb.getProductList
             dtprodlist.Merge(dtprodlistdb)
             cbxproductname.DataSource = dtprodlist
-            Lblinvoiceno.Text = startdb.getnextinvoiceno()
         Catch ex As Exception
             MsgBox(ex.Message)
         End Try
@@ -59,8 +59,14 @@ Public Class invoiceadd
             dtcustomercode = startdb.savecustomer(txtcustomername.Text.ToString, txtcustomernumber.Text.ToString, txtcustomeraddress.Text.ToString)
             For Each dr As DataRow In dtinvvoice.Rows
                 startdb.saveinvoice(dtcustomercode(0)(0), dr("Item Code").ToString, dr("Quantity").ToString, dr("Unit Price").ToString, dr("Discount").ToString,
+                                        lbltax.Text.ToString, If(btncash.Checked, "cash", "online"), dr("Total Price"),
+                                          txttotal.Text.ToString, DateTimePicker1.Value.ToString("dd-MM-yyyy"), True)
+                Exit For
+            Next
+            For Each dr As DataRow In dtinvvoice.Rows
+                startdb.saveinvoice(dtcustomercode(0)(0), dr("Item Code").ToString, dr("Quantity").ToString, dr("Unit Price").ToString, dr("Discount").ToString,
                                     lbltax.Text.ToString, If(btncash.Checked, "cash", "online"), dr("Total Price"),
-                                      txttotal.Text.ToString, DateTimePicker1.Value.ToString("dd-MM-yyyy"))
+                                      txttotal.Text.ToString, DateTimePicker1.Value.ToString("dd-MM-yyyy"), False)
             Next
         Catch ex As Exception
         End Try

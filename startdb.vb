@@ -11,19 +11,22 @@ Public Class startdb
     End Sub
     Public Sub execute()
         Dim version As String = Me.GetType.Assembly.GetName.Version.ToString()
-        'sqlconn = New SQLite.SQLiteConnection("Data Source=database.db;Version=3;New=True;Compress=True;")
-        'sqlconn.Open()
-        'sqlcomm = sqlconn.CreateCommand
+        sqlconn = New SQLite.SQLiteConnection("Data Source=database.erp;Version=3;New=True;Compress=True;")
         Try
             If version < "1.0.0.0" Then
-                'stock table
-                'sqlcomm.CommandText = "Create table tbllogindetails(ID integer primary key autoincrement,user_name text,password text " _
-                '            & " created_date datetime default current_timestamp,modified_date datetime default current_timestamp)"
-                'sqlcomm.CommandText = "insert into tbllogindetails(user_name,password) values('admin','" + cryptoclass.Encrypt("admin123") + "')"
-                'sqlcomm.ExecuteNonQuery()
-                sqlcomm.CommandText = "Create table tblstock(item_code text primary key ,item_category text,productname text,description text ," _
-                            & "unit_quantity real,base_unit text,unit_price real,tax real,discount real,net_price real," _
+                sqlcomm.CommandText = "Create table tbllogindetails(ID integer primary key autoincrement,user_name text,password text " _
                             & " created_date datetime default current_timestamp,modified_date datetime default current_timestamp)"
+                sqlcomm.ExecuteNonQuery()
+                sqlcomm.CommandText = "insert into tbllogindetails(user_name,password) values('admin','" + cryptoclass.Encrypt("admin") + "')"
+                sqlcomm.ExecuteNonQuery()
+                'stock
+                sqlcomm.CommandText = "Create table tblstock(item_code text primary key,item_category text,productname text,description text ," _
+                            & "unit_quantity real,base_unit text,unit_price real,tax real,discount real,price real,purchase_no integer," _
+                            & " created_date datetime default current_timestamp,modified_date datetime default current_timestamp)"
+                sqlcomm.ExecuteNonQuery()
+
+                sqlcomm.CommandText = "create table purchase(purchase_no integer primary key autoincrement,vendor_code integer,net_price real,vendor_invoice_no text" _
+                            & ",created_date datetime)"
                 sqlcomm.ExecuteNonQuery()
                 'customer table
                 sqlcomm.CommandText = "create table customer (customer_code integer primary key autoincrement,customer_name text,customer_number integer " _
@@ -31,30 +34,27 @@ Public Class startdb
                 sqlcomm.ExecuteNonQuery()
                 'vendor table
                 sqlcomm.CommandText = "create table vendor(vendor_code integer primary key autoincrement,vendor_name text,vendor_number integer " _
-                            & ",vendor_address text,vendor_gst text)"
+                            & ",vendor_address text,vendor_email text,vendor_gst text,created_date datetime default current_timestamp,modified_date datetime default current_timestamp)"
                 sqlcomm.ExecuteNonQuery()
                 'invoice table
-                sqlcomm.CommandText = "create table invoice(invoice_number integer primary key autoincrement,customer_code integer,item_code text" _
-                            & ",item_quantity integer,item_rate real,discount real,tax real,price real,totalprice real,mode_of_payment text,created_date datetime,modified_date)"
+                sqlcomm.CommandText = "create table invoice(invoice_number integer primary key autoincrement,customer_code integer,tax real," _
+                & "totalprice real,mode_of_payment text,created_date datetime default current_timestamp,modified_date datetime default current_timestamp)"
+                sqlcomm.ExecuteNonQuery()
+                'invoice item
+                sqlcomm.CommandText = "create table invoice_items(item_no integer primary key autoincrement,item_code text" _
+                            & ",item_quantity integer,item_rate real,discount real,price real,created_date datetime default current_timestamp,modified_date datetime default current_timestamp)"
                 sqlcomm.ExecuteNonQuery()
 
                 sqlcomm.CommandText = "select * from tbllogindetails"
                 sqldr = sqlcomm.ExecuteReader
+
                 Dim dt As DataTable = New DataTable()
                 dt.Load(sqldr)
 
             End If
-            'sqlcomm.CommandText = "insert into tblstock (item_code,productname,item_category,description,unit_quantity,base_unit,unit_price,tax,discount,net_price) values" _
-            '& "('45b','jean full','jean','full jeans 34','100','pcs','400','39',20,41900)"
-            'sqlcomm.CommandText = "select stk.description as [Prodcut Name],inv.item_rate as [Unit Price]," _
-            '                        & " inv.item_quantity as [Quantity],inv.discount as [Discount],inv.price as [Total Price] from invoice as inv " _
-            '                        & "inner join tblstock stk on stk.item_code = inv.item_code order by inv.created_date"
-            'sqlcomm.ExecuteNonQuery()
-            'dtadd.Load(sqldr)
         Catch ex As Exception
             MsgBox(ex.Message)
         End Try
-        'sqlconn.Close()
     End Sub
 
     Public Function login(ByVal username As String, ByVal password As String) As DataTable
@@ -67,21 +67,18 @@ Public Class startdb
 
     Public Function getProductList() As DataTable
         Dim dtadd As New DataTable
-        'sqlconn.Open()
         sqlcomm.CommandText = "select item_code as [Product_ID],description as [Product_Description] from tblstock"
         sqldr = sqlcomm.ExecuteReader
         dtadd.Load(sqldr)
-        'sqlconn.Close()
         Return dtadd
     End Function
+
     Public Function savecustomer(ByVal customername As String, ByVal customernumber As String, ByVal customeraddress As String) As DataTable
         Dim dtadd As New DataTable
-        'sqlconn.Open()
         sqlcomm.CommandText = "insert into customer(customer_name ,customer_number  " _
                         & ",customer_address) values('" + customername + "'," + customernumber + ",'" + customeraddress + "');SELECT last_insert_rowid()"
         sqldr = sqlcomm.ExecuteReader
         dtadd.Load(sqldr)
-        'sqlconn.Close()
         Return dtadd
     End Function
     Public Function getProductDescription(ByVal itemcode As String) As DataTable
@@ -93,24 +90,29 @@ Public Class startdb
     End Function
     Public Function saveinvoice(ByVal customercode As String, ByVal itemcode As String, ByVal itemquantity As String,
                                 ByVal itemrate As String, ByVal discount As String, ByVal tax As String, ByVal modeofpayment As String,
-                                ByVal price As String, ByVal totalprice As String, ByVal dateinv As String) As DataTable
+                                ByVal price As String, ByVal totalprice As String, ByVal dateinv As String, ByVal isinvoice As Boolean) As Boolean
 
         Dim dtadd As New DataTable
-        'sqlconn.Open()
-        sqlcomm.CommandText = "insert into invoice(customer_code ,item_code,item_quantity ,item_rate,discount,tax,mode_of_payment,price,totalprice,created_date) " _
-                        & " values(" + customercode + ",'" + itemcode + "'," + itemquantity + "," + itemrate + "," + discount + "," + tax + ",'" + modeofpayment _
-                            + "'," + price + "," + totalprice + ",'" + dateinv + "');"
-        sqldr = sqlcomm.ExecuteReader
-        dtadd.Load(sqldr)
-        'sqlconn.Close()
-        Return dtadd
+        Try
+            If isinvoice Then
+                sqlcomm.CommandText = "insert into invoice(customer_code ,tax,mode_of_payment,price,totalprice,created_date) " _
+                            & " values(" + customercode + "," + tax + ",'" + modeofpayment + "'," + totalprice + ",'" + dateinv + "');"
+                sqldr = sqlcomm.ExecuteReader
+            Else
+                sqlcomm.CommandText = "insert into invoice_items(item_code,item_quantity,item_rate,discount,price,created_date) values(" _
+                                & "'" + itemcode + "'," + itemquantity + "," + itemrate + "," + discount + "," + price + ",'" + dateinv + "')"
+                sqlcomm.ExecuteReader()
+            End If
+            Return True
+        Catch ex As Exception
+            Return False
+        End Try
     End Function
 
     Public Function setitemstructure() As DataTable
         Dim dtadd As New DataTable
-        sqlcomm.CommandText = "select null as [Item Code],stk.description as [Prodcut Name],null as [Description],inv.item_rate as [Unit Price]," _
-                                        & " inv.item_quantity as [Quantity],null as [Base unit],inv.discount as [Discount],inv.price as [Total Price] from invoice as inv " _
-                                        & "inner join tblstock stk on stk.item_code = inv.item_code where 1=0 order by inv.created_date "
+        sqlcomm.CommandText = "Select null As [Item Code],null As [Prodcut Name],null As [Description],null As [Unit Price]," _
+                                        & " null As [Quantity],null As [Base unit],null As [Discount],null As [Total Price] from invoice As inv "
         Try
             sqldr = sqlcomm.ExecuteReader
             dtadd.Load(sqldr)
@@ -121,14 +123,103 @@ Public Class startdb
     End Function
     Public Function getnextinvoiceno() As String
         Dim dtadd As New DataTable
-        sqlcomm.CommandText = "select seq from sqlite_sequence WHERE name = 'invoice'"
+        sqlcomm.CommandText = "Select seq from sqlite_sequence WHERE name = 'invoice'"
         Try
             sqldr = sqlcomm.ExecuteReader
             dtadd.Load(sqldr)
         Catch ex As Exception
 
         End Try
-        Return dtadd(0)(0).ToString
+        Return If(dtadd.Rows.Count = 0, 1, dtadd(0)(0).ToString)
+    End Function
+
+    'for vendor
+    Public Function getVendorList(Optional ByVal empty As Boolean = True) As DataTable
+        Dim dtadd As New DataTable
+        Try
+            If empty Then
+                sqlcomm.CommandText = "select vendor_name as [Vendor Name],vendor_number as [Vendor Number]" _
+                            & ",vendor_address as [Vendor Address],vendor_gst as [Vendor GST],vendor_email as [Email] from vendor where 1=0"
+                sqldr = sqlcomm.ExecuteReader
+                dtadd.Load(sqldr)
+            Else
+                sqlcomm.CommandText = "select vendor_code as [Vendor Code],vendor_name as [Vendor Name],vendor_number as [Vendor Number]" _
+                            & ",vendor_address as [Vendor Address],vendor_gst as [Vendor GST],vendor_email as [Email] from vendor"
+                sqldr = sqlcomm.ExecuteReader
+                dtadd.Load(sqldr)
+            End If
+            Return dtadd
+        Catch ex As Exception
+            MsgBox("Error while getting vendor data")
+        End Try
+    End Function
+
+    Public Function savevendor(ByVal vendorname As String, ByVal vendorno As String, ByVal address As String,
+                                ByVal gst As String, ByVal email As String, ByVal dateinv As String) As Boolean
+
+        Dim dtadd As New DataTable
+        Try
+            sqlcomm.CommandText = "insert into vendor(vendor_name ,vendor_number,vendor_address,vendor_gst,vendor_email,created_date) " _
+                        & " values('" + vendorname + "'," + vendorno + ",'" + address + "','" + gst + "','" + email + "','" + dateinv + "');"
+            sqldr = sqlcomm.ExecuteReader
+            Return True
+        Catch ex As Exception
+            Return False
+        End Try
+    End Function
+
+    Public Function getstock(Optional ByVal empty As Boolean = True) As DataTable
+        Dim dt As New DataTable
+        Try
+            If empty Then
+                sqlcomm.CommandText = "select item_code as [Item Code],item_category as [Item Category],productname as [Product Name],description as [Description]" _
+                                            & ",unit_quantity as [Quantity],base_unit as [Base Unit],unit_price as [Unit Price],tax as [Tax],discount as [Discount],price as [Price] from tblstock where 1=0"
+                sqldr = sqlcomm.ExecuteReader
+                dt.Load(sqldr)
+            Else
+                sqlcomm.CommandText = "select item_code as [Item Code],item_category as [Item Category],productname as [Product Name],description as [Description]" _
+                                            & ",unit_quantity as [Quantity],base_unit as [Base Unit],unit_price as [Unit Price],tax as [Tax],discount as [Discount],price as [Price] from tblstock "
+                sqldr = sqlcomm.ExecuteReader
+                dt.Load(sqldr)
+            End If
+            Return dt
+        Catch ex As Exception
+
+        End Try
+    End Function
+
+    Public Function getpurchaseno() As String
+        Dim dtadd As New DataTable
+        sqlcomm.CommandText = "Select seq from sqlite_sequence WHERE name = 'purchase'"
+        Try
+            sqldr = sqlcomm.ExecuteReader
+            dtadd.Load(sqldr)
+        Catch ex As Exception
+
+        End Try
+        Return If(dtadd.Rows.Count.ToString = 0, 1, dtadd(0)(0).ToString)
+    End Function
+
+    Public Function saveStock(ByVal item_code As String, ByVal purchase_no As String, ByVal vendor_code As String, ByVal net_price As String, ByVal vendor_invoice_no As String _
+                                , ByVal item_category As String, ByVal productname As String, ByVal description As String, ByVal unit_quantity As String _
+                                , ByVal base_unit As String, ByVal unit_price As String, ByVal tax As String, ByVal discount As String, ByVal price As String,
+                                ByVal created_date As String, ByVal isItems As Boolean) As Boolean
+        Dim dtadd As New DataTable
+        Try
+            If isItems Then
+                sqlcomm.CommandText = "insert into tblstock(item_code,item_category ,productname,description,unit_quantity,base_unit,unit_price,tax,discount,price,purchase_no,created_date) " _
+                & " values('" + item_code + "','" + item_category + "','" + productname + "','" + description + "'," + unit_quantity + ",'" + base_unit + "'," + unit_price + "," + tax + "," _
+                & discount + "," + price + "," + purchase_no + ",'" + created_date + "');"
+                sqlcomm.ExecuteNonQuery()
+            Else
+                sqlcomm.CommandText = "insert into purchase(vendor_code,net_price,vendor_invoice_no,created_date) values(" _
+                                & "" + vendor_code + "," + net_price + ",'" + vendor_invoice_no + "','" + created_date + "');"
+                sqlcomm.ExecuteNonQuery()
+            End If
+            Return True
+        Catch ex As Exception
+            Return False
+        End Try
     End Function
 End Class
 

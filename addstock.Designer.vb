@@ -24,16 +24,15 @@ Partial Class addstock
     Private Sub InitializeComponent()
         Me.btnreset = New System.Windows.Forms.Button()
         Me.btnsave = New System.Windows.Forms.Button()
-        Me.comboBox2 = New System.Windows.Forms.ComboBox()
-        Me.cbxcurrency = New System.Windows.Forms.ComboBox()
-        Me.comboBox1 = New System.Windows.Forms.ComboBox()
-        Me.textBox8 = New System.Windows.Forms.TextBox()
-        Me.textBox9 = New System.Windows.Forms.TextBox()
-        Me.textBox7 = New System.Windows.Forms.TextBox()
-        Me.textBox6 = New System.Windows.Forms.TextBox()
-        Me.textBox5 = New System.Windows.Forms.TextBox()
+        Me.cbxitemcategory = New System.Windows.Forms.ComboBox()
+        Me.cbxbaseunit = New System.Windows.Forms.ComboBox()
+        Me.txtqty = New System.Windows.Forms.TextBox()
+        Me.txttotal = New System.Windows.Forms.TextBox()
+        Me.txtunitprice = New System.Windows.Forms.TextBox()
+        Me.txtdiscount = New System.Windows.Forms.TextBox()
+        Me.txttax = New System.Windows.Forms.TextBox()
         Me.textBox4 = New System.Windows.Forms.TextBox()
-        Me.textBox3 = New System.Windows.Forms.TextBox()
+        Me.txtdescription = New System.Windows.Forms.TextBox()
         Me.txtproductname = New System.Windows.Forms.TextBox()
         Me.lblpurchaserate = New System.Windows.Forms.Label()
         Me.lbldiscount = New System.Windows.Forms.Label()
@@ -49,11 +48,20 @@ Partial Class addstock
         Me.DateTimePicker1 = New System.Windows.Forms.DateTimePicker()
         Me.lable6 = New System.Windows.Forms.Label()
         Me.lblvendorname = New System.Windows.Forms.Label()
-        Me.ComboBox3 = New System.Windows.Forms.ComboBox()
+        Me.cbxvendor = New System.Windows.Forms.ComboBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.txtcode = New System.Windows.Forms.TextBox()
-        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.dgvStock = New System.Windows.Forms.DataGridView()
+        Me.btnadd = New System.Windows.Forms.Button()
+        Me.txtvendorinvoiceno = New System.Windows.Forms.TextBox()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.txttotaltax = New System.Windows.Forms.TextBox()
+        Me.txttotaldiscount = New System.Windows.Forms.TextBox()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.lblpurchaseno = New System.Windows.Forms.Label()
+        CType(Me.dgvStock, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'btnreset
@@ -74,64 +82,62 @@ Partial Class addstock
         Me.btnsave.Text = "Save"
         Me.btnsave.UseVisualStyleBackColor = True
         '
-        'comboBox2
+        'cbxitemcategory
         '
-        Me.comboBox2.FormattingEnabled = True
-        Me.comboBox2.Location = New System.Drawing.Point(173, 112)
-        Me.comboBox2.Name = "comboBox2"
-        Me.comboBox2.Size = New System.Drawing.Size(121, 21)
-        Me.comboBox2.TabIndex = 43
+        Me.cbxitemcategory.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.cbxitemcategory.FormattingEnabled = True
+        Me.cbxitemcategory.Items.AddRange(New Object() {"Cloths", "Medicine", "Auto"})
+        Me.cbxitemcategory.Location = New System.Drawing.Point(173, 112)
+        Me.cbxitemcategory.Name = "cbxitemcategory"
+        Me.cbxitemcategory.Size = New System.Drawing.Size(121, 21)
+        Me.cbxitemcategory.TabIndex = 43
         '
-        'cbxcurrency
+        'cbxbaseunit
         '
-        Me.cbxcurrency.FormattingEnabled = True
-        Me.cbxcurrency.Location = New System.Drawing.Point(901, 209)
-        Me.cbxcurrency.Name = "cbxcurrency"
-        Me.cbxcurrency.Size = New System.Drawing.Size(48, 21)
-        Me.cbxcurrency.TabIndex = 42
+        Me.cbxbaseunit.AllowDrop = True
+        Me.cbxbaseunit.Items.AddRange(New Object() {"pcs", "box", "free", "nos", "dozen", "meter", "cm"})
+        Me.cbxbaseunit.Location = New System.Drawing.Point(385, 112)
+        Me.cbxbaseunit.Name = "cbxbaseunit"
+        Me.cbxbaseunit.Size = New System.Drawing.Size(121, 21)
+        Me.cbxbaseunit.TabIndex = 41
         '
-        'comboBox1
+        'txtqty
         '
-        Me.comboBox1.FormattingEnabled = True
-        Me.comboBox1.Location = New System.Drawing.Point(385, 112)
-        Me.comboBox1.Name = "comboBox1"
-        Me.comboBox1.Size = New System.Drawing.Size(121, 21)
-        Me.comboBox1.TabIndex = 41
+        Me.txtqty.Location = New System.Drawing.Point(342, 214)
+        Me.txtqty.Name = "txtqty"
+        Me.txtqty.Size = New System.Drawing.Size(100, 20)
+        Me.txtqty.TabIndex = 39
         '
-        'textBox8
+        'txttotal
         '
-        Me.textBox8.Location = New System.Drawing.Point(342, 214)
-        Me.textBox8.Name = "textBox8"
-        Me.textBox8.Size = New System.Drawing.Size(100, 20)
-        Me.textBox8.TabIndex = 39
+        Me.txttotal.Location = New System.Drawing.Point(587, 459)
+        Me.txttotal.Name = "txttotal"
+        Me.txttotal.Size = New System.Drawing.Size(100, 20)
+        Me.txttotal.TabIndex = 38
+        Me.txttotal.Text = "0"
         '
-        'textBox9
+        'txtunitprice
         '
-        Me.textBox9.Location = New System.Drawing.Point(795, 210)
-        Me.textBox9.Name = "textBox9"
-        Me.textBox9.Size = New System.Drawing.Size(100, 20)
-        Me.textBox9.TabIndex = 38
+        Me.txtunitprice.Location = New System.Drawing.Point(173, 210)
+        Me.txtunitprice.Name = "txtunitprice"
+        Me.txtunitprice.Size = New System.Drawing.Size(100, 20)
+        Me.txtunitprice.TabIndex = 37
         '
-        'textBox7
+        'txtdiscount
         '
-        Me.textBox7.Location = New System.Drawing.Point(173, 210)
-        Me.textBox7.Name = "textBox7"
-        Me.textBox7.Size = New System.Drawing.Size(100, 20)
-        Me.textBox7.TabIndex = 37
+        Me.txtdiscount.Location = New System.Drawing.Point(549, 214)
+        Me.txtdiscount.Name = "txtdiscount"
+        Me.txtdiscount.Size = New System.Drawing.Size(100, 20)
+        Me.txtdiscount.TabIndex = 36
+        Me.txtdiscount.Text = "0"
         '
-        'textBox6
+        'txttax
         '
-        Me.textBox6.Location = New System.Drawing.Point(667, 210)
-        Me.textBox6.Name = "textBox6"
-        Me.textBox6.Size = New System.Drawing.Size(100, 20)
-        Me.textBox6.TabIndex = 36
-        '
-        'textBox5
-        '
-        Me.textBox5.Location = New System.Drawing.Point(546, 210)
-        Me.textBox5.Name = "textBox5"
-        Me.textBox5.Size = New System.Drawing.Size(100, 20)
-        Me.textBox5.TabIndex = 35
+        Me.txttax.Location = New System.Drawing.Point(739, 216)
+        Me.txttax.Name = "txttax"
+        Me.txttax.Size = New System.Drawing.Size(100, 20)
+        Me.txttax.TabIndex = 35
+        Me.txttax.Text = "0"
         '
         'textBox4
         '
@@ -140,12 +146,12 @@ Partial Class addstock
         Me.textBox4.Size = New System.Drawing.Size(100, 20)
         Me.textBox4.TabIndex = 40
         '
-        'textBox3
+        'txtdescription
         '
-        Me.textBox3.Location = New System.Drawing.Point(173, 181)
-        Me.textBox3.Name = "textBox3"
-        Me.textBox3.Size = New System.Drawing.Size(333, 20)
-        Me.textBox3.TabIndex = 34
+        Me.txtdescription.Location = New System.Drawing.Point(173, 181)
+        Me.txtdescription.Name = "txtdescription"
+        Me.txtdescription.Size = New System.Drawing.Size(333, 20)
+        Me.txtdescription.TabIndex = 34
         '
         'txtproductname
         '
@@ -157,7 +163,7 @@ Partial Class addstock
         'lblpurchaserate
         '
         Me.lblpurchaserate.AutoSize = True
-        Me.lblpurchaserate.Location = New System.Drawing.Point(813, 188)
+        Me.lblpurchaserate.Location = New System.Drawing.Point(460, 462)
         Me.lblpurchaserate.Name = "lblpurchaserate"
         Me.lblpurchaserate.Size = New System.Drawing.Size(121, 13)
         Me.lblpurchaserate.TabIndex = 32
@@ -166,7 +172,7 @@ Partial Class addstock
         'lbldiscount
         '
         Me.lbldiscount.AutoSize = True
-        Me.lbldiscount.Location = New System.Drawing.Point(691, 188)
+        Me.lbldiscount.Location = New System.Drawing.Point(494, 216)
         Me.lbldiscount.Name = "lbldiscount"
         Me.lbldiscount.Size = New System.Drawing.Size(49, 13)
         Me.lbldiscount.TabIndex = 31
@@ -184,7 +190,7 @@ Partial Class addstock
         'lbltax
         '
         Me.lbltax.AutoSize = True
-        Me.lbltax.Location = New System.Drawing.Point(584, 188)
+        Me.lbltax.Location = New System.Drawing.Point(694, 220)
         Me.lbltax.Name = "lbltax"
         Me.lbltax.Size = New System.Drawing.Size(25, 13)
         Me.lbltax.TabIndex = 29
@@ -275,19 +281,19 @@ Partial Class addstock
         '
         Me.lblvendorname.AutoSize = True
         Me.lblvendorname.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblvendorname.Location = New System.Drawing.Point(664, 82)
+        Me.lblvendorname.Location = New System.Drawing.Point(664, 84)
         Me.lblvendorname.Name = "lblvendorname"
         Me.lblvendorname.Size = New System.Drawing.Size(95, 17)
         Me.lblvendorname.TabIndex = 80
         Me.lblvendorname.Text = "Vendor Name"
         '
-        'ComboBox3
+        'cbxvendor
         '
-        Me.ComboBox3.FormattingEnabled = True
-        Me.ComboBox3.Location = New System.Drawing.Point(667, 120)
-        Me.ComboBox3.Name = "ComboBox3"
-        Me.ComboBox3.Size = New System.Drawing.Size(244, 21)
-        Me.ComboBox3.TabIndex = 81
+        Me.cbxvendor.FormattingEnabled = True
+        Me.cbxvendor.Location = New System.Drawing.Point(667, 120)
+        Me.cbxvendor.Name = "cbxvendor"
+        Me.cbxvendor.Size = New System.Drawing.Size(244, 21)
+        Me.cbxvendor.TabIndex = 81
         '
         'Label1
         '
@@ -305,47 +311,133 @@ Partial Class addstock
         Me.txtcode.Size = New System.Drawing.Size(100, 20)
         Me.txtcode.TabIndex = 33
         '
-        'DataGridView1
+        'dgvStock
         '
-        Me.DataGridView1.AllowUserToAddRows = False
-        Me.DataGridView1.AllowUserToDeleteRows = False
-        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Location = New System.Drawing.Point(60, 254)
-        Me.DataGridView1.Name = "DataGridView1"
-        Me.DataGridView1.ReadOnly = True
-        Me.DataGridView1.Size = New System.Drawing.Size(889, 187)
-        Me.DataGridView1.TabIndex = 82
+        Me.dgvStock.AllowUserToAddRows = False
+        Me.dgvStock.AllowUserToDeleteRows = False
+        Me.dgvStock.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvStock.Location = New System.Drawing.Point(60, 254)
+        Me.dgvStock.Name = "dgvStock"
+        Me.dgvStock.ReadOnly = True
+        Me.dgvStock.Size = New System.Drawing.Size(889, 187)
+        Me.dgvStock.TabIndex = 82
+        '
+        'btnadd
+        '
+        Me.btnadd.Location = New System.Drawing.Point(859, 216)
+        Me.btnadd.Name = "btnadd"
+        Me.btnadd.Size = New System.Drawing.Size(75, 23)
+        Me.btnadd.TabIndex = 83
+        Me.btnadd.Text = "Add"
+        Me.btnadd.UseVisualStyleBackColor = True
+        '
+        'txtvendorinvoiceno
+        '
+        Me.txtvendorinvoiceno.Location = New System.Drawing.Point(739, 158)
+        Me.txtvendorinvoiceno.Name = "txtvendorinvoiceno"
+        Me.txtvendorinvoiceno.Size = New System.Drawing.Size(100, 20)
+        Me.txtvendorinvoiceno.TabIndex = 35
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.Location = New System.Drawing.Point(595, 158)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(124, 17)
+        Me.Label2.TabIndex = 80
+        Me.Label2.Text = "Vendor Invoice No"
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(271, 461)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(25, 13)
+        Me.Label3.TabIndex = 29
+        Me.Label3.Text = "Tax"
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(71, 457)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(49, 13)
+        Me.Label4.TabIndex = 31
+        Me.Label4.Text = "Discount"
+        '
+        'txttotaltax
+        '
+        Me.txttotaltax.Location = New System.Drawing.Point(316, 457)
+        Me.txttotaltax.Name = "txttotaltax"
+        Me.txttotaltax.Size = New System.Drawing.Size(100, 20)
+        Me.txttotaltax.TabIndex = 35
+        Me.txttotaltax.Text = "0"
+        '
+        'txttotaldiscount
+        '
+        Me.txttotaldiscount.Location = New System.Drawing.Point(126, 455)
+        Me.txttotaldiscount.Name = "txttotaldiscount"
+        Me.txttotaldiscount.Size = New System.Drawing.Size(100, 20)
+        Me.txttotaldiscount.TabIndex = 36
+        Me.txttotaldiscount.Text = "0"
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(66, 59)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(72, 13)
+        Me.Label5.TabIndex = 26
+        Me.Label5.Text = "Purchase No."
+        '
+        'lblpurchaseno
+        '
+        Me.lblpurchaseno.AutoSize = True
+        Me.lblpurchaseno.Location = New System.Drawing.Point(170, 59)
+        Me.lblpurchaseno.Name = "lblpurchaseno"
+        Me.lblpurchaseno.Size = New System.Drawing.Size(13, 13)
+        Me.lblpurchaseno.TabIndex = 26
+        Me.lblpurchaseno.Text = "0"
         '
         'addstock
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(972, 490)
-        Me.Controls.Add(Me.DataGridView1)
-        Me.Controls.Add(Me.ComboBox3)
+        Me.ClientSize = New System.Drawing.Size(972, 503)
+        Me.Controls.Add(Me.btnadd)
+        Me.Controls.Add(Me.dgvStock)
+        Me.Controls.Add(Me.cbxvendor)
+        Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.lblvendorname)
         Me.Controls.Add(Me.DateTimePicker1)
         Me.Controls.Add(Me.lable6)
         Me.Controls.Add(Me.btnreset)
         Me.Controls.Add(Me.btnsave)
-        Me.Controls.Add(Me.comboBox2)
-        Me.Controls.Add(Me.cbxcurrency)
-        Me.Controls.Add(Me.comboBox1)
-        Me.Controls.Add(Me.textBox8)
-        Me.Controls.Add(Me.textBox9)
-        Me.Controls.Add(Me.textBox7)
-        Me.Controls.Add(Me.textBox6)
-        Me.Controls.Add(Me.textBox5)
+        Me.Controls.Add(Me.cbxitemcategory)
+        Me.Controls.Add(Me.cbxbaseunit)
+        Me.Controls.Add(Me.txtqty)
+        Me.Controls.Add(Me.txttotal)
+        Me.Controls.Add(Me.txtunitprice)
+        Me.Controls.Add(Me.txttotaldiscount)
+        Me.Controls.Add(Me.txtdiscount)
+        Me.Controls.Add(Me.txttotaltax)
+        Me.Controls.Add(Me.txtvendorinvoiceno)
+        Me.Controls.Add(Me.txttax)
         Me.Controls.Add(Me.textBox4)
-        Me.Controls.Add(Me.textBox3)
+        Me.Controls.Add(Me.txtdescription)
         Me.Controls.Add(Me.txtcode)
         Me.Controls.Add(Me.txtproductname)
+        Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.lblpurchaserate)
         Me.Controls.Add(Me.lbldiscount)
+        Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.lbluom)
         Me.Controls.Add(Me.lbltax)
         Me.Controls.Add(Me.lblunitprice)
         Me.Controls.Add(Me.lblquantity)
+        Me.Controls.Add(Me.lblpurchaseno)
+        Me.Controls.Add(Me.Label5)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.lblitemcategory)
         Me.Controls.Add(Me.lblproductname)
@@ -354,7 +446,7 @@ Partial Class addstock
         Me.Controls.Add(Me.lblproduct)
         Me.Name = "addstock"
         Me.Text = "addstock"
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.dgvStock, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -362,16 +454,15 @@ Partial Class addstock
 
     Private WithEvents btnreset As Button
     Private WithEvents btnsave As Button
-    Private WithEvents comboBox2 As ComboBox
-    Private WithEvents cbxcurrency As ComboBox
-    Private WithEvents comboBox1 As ComboBox
-    Private WithEvents textBox8 As TextBox
-    Private WithEvents textBox9 As TextBox
-    Private WithEvents textBox7 As TextBox
-    Private WithEvents textBox6 As TextBox
-    Private WithEvents textBox5 As TextBox
+    Private WithEvents cbxitemcategory As ComboBox
+    Private WithEvents cbxbaseunit As ComboBox
+    Private WithEvents txtqty As TextBox
+    Private WithEvents txttotal As TextBox
+    Private WithEvents txtunitprice As TextBox
+    Private WithEvents txtdiscount As TextBox
+    Private WithEvents txttax As TextBox
     Private WithEvents textBox4 As TextBox
-    Private WithEvents textBox3 As TextBox
+    Private WithEvents txtdescription As TextBox
     Private WithEvents txtproductname As TextBox
     Private WithEvents lblpurchaserate As Label
     Private WithEvents lbldiscount As Label
@@ -387,8 +478,17 @@ Partial Class addstock
     Friend WithEvents DateTimePicker1 As DateTimePicker
     Friend WithEvents lable6 As Label
     Friend WithEvents lblvendorname As Label
-    Friend WithEvents ComboBox3 As ComboBox
+    Friend WithEvents cbxvendor As ComboBox
     Private WithEvents Label1 As Label
     Private WithEvents txtcode As TextBox
-    Friend WithEvents DataGridView1 As DataGridView
+    Friend WithEvents dgvStock As DataGridView
+    Friend WithEvents btnadd As Button
+    Private WithEvents txtvendorinvoiceno As TextBox
+    Friend WithEvents Label2 As Label
+    Private WithEvents Label3 As Label
+    Private WithEvents Label4 As Label
+    Private WithEvents txttotaltax As TextBox
+    Private WithEvents txttotaldiscount As TextBox
+    Private WithEvents Label5 As Label
+    Private WithEvents lblpurchaseno As Label
 End Class

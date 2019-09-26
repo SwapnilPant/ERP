@@ -249,6 +249,7 @@ Partial Class invoiceadd
         Me.txtquantity.Name = "txtquantity"
         Me.txtquantity.Size = New System.Drawing.Size(43, 20)
         Me.txtquantity.TabIndex = 60
+        Me.txtquantity.Text = "0"
         '
         'txtdiscription
         '
@@ -270,6 +271,7 @@ Partial Class invoiceadd
         Me.txtdiscount.Name = "txtdiscount"
         Me.txtdiscount.Size = New System.Drawing.Size(100, 20)
         Me.txtdiscount.TabIndex = 61
+        Me.txtdiscount.Text = "0"
         '
         'lbldiscount
         '
