@@ -1,7 +1,7 @@
 Public Class Menu
     Public form_invoiceadd As New invoiceadd
     Public form_addvendor As New addvendor
-    Public form_login As New Form1 'login
+    Public form_login As New LoginForm1 'login
     Public form_history As New history
     Public form_addstock As New addstock
 

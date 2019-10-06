@@ -38,6 +38,7 @@ Partial Class addvendor
         Me.Label4 = New System.Windows.Forms.Label()
         Me.dgvvendor = New System.Windows.Forms.DataGridView()
         Me.btnaddvendor = New System.Windows.Forms.Button()
+        Me.Btnback = New System.Windows.Forms.Button()
         Me.Taskbar1 = New ERP_Trial_1.taskbar()
         CType(Me.dgvvendor, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -47,7 +48,7 @@ Partial Class addvendor
         Me.btnreset.Location = New System.Drawing.Point(779, 492)
         Me.btnreset.Name = "btnreset"
         Me.btnreset.Size = New System.Drawing.Size(75, 23)
-        Me.btnreset.TabIndex = 96
+        Me.btnreset.TabIndex = 82
         Me.btnreset.Text = "Reset"
         Me.btnreset.UseVisualStyleBackColor = True
         '
@@ -56,7 +57,7 @@ Partial Class addvendor
         Me.btnsave.Location = New System.Drawing.Point(860, 492)
         Me.btnsave.Name = "btnsave"
         Me.btnsave.Size = New System.Drawing.Size(75, 23)
-        Me.btnsave.TabIndex = 95
+        Me.btnsave.TabIndex = 81
         Me.btnsave.Text = "Save"
         Me.btnsave.UseVisualStyleBackColor = True
         '
@@ -65,7 +66,7 @@ Partial Class addvendor
         Me.DateTimePicker1.Location = New System.Drawing.Point(735, 23)
         Me.DateTimePicker1.Name = "DateTimePicker1"
         Me.DateTimePicker1.Size = New System.Drawing.Size(200, 20)
-        Me.DateTimePicker1.TabIndex = 77
+        Me.DateTimePicker1.TabIndex = 73
         '
         'txtvendoraddress
         '
@@ -87,7 +88,7 @@ Partial Class addvendor
         Me.txtvendornumber.Location = New System.Drawing.Point(165, 105)
         Me.txtvendornumber.Name = "txtvendornumber"
         Me.txtvendornumber.Size = New System.Drawing.Size(122, 20)
-        Me.txtvendornumber.TabIndex = 73
+        Me.txtvendornumber.TabIndex = 75
         '
         'lblcustomeraddress
         '
@@ -133,7 +134,7 @@ Partial Class addvendor
         Me.txtvendoremail.Location = New System.Drawing.Point(384, 155)
         Me.txtvendoremail.Name = "txtvendoremail"
         Me.txtvendoremail.Size = New System.Drawing.Size(174, 20)
-        Me.txtvendoremail.TabIndex = 100
+        Me.txtvendoremail.TabIndex = 78
         '
         'Label1
         '
@@ -150,7 +151,7 @@ Partial Class addvendor
         Me.txtgst.Location = New System.Drawing.Point(384, 102)
         Me.txtgst.Name = "txtgst"
         Me.txtgst.Size = New System.Drawing.Size(176, 20)
-        Me.txtgst.TabIndex = 100
+        Me.txtgst.TabIndex = 77
         '
         'Label4
         '
@@ -171,16 +172,25 @@ Partial Class addvendor
         Me.dgvvendor.Name = "dgvvendor"
         Me.dgvvendor.ReadOnly = True
         Me.dgvvendor.Size = New System.Drawing.Size(613, 133)
-        Me.dgvvendor.TabIndex = 102
+        Me.dgvvendor.TabIndex = 80
         '
         'btnaddvendor
         '
         Me.btnaddvendor.Location = New System.Drawing.Point(672, 155)
         Me.btnaddvendor.Name = "btnaddvendor"
         Me.btnaddvendor.Size = New System.Drawing.Size(75, 23)
-        Me.btnaddvendor.TabIndex = 97
+        Me.btnaddvendor.TabIndex = 79
         Me.btnaddvendor.Text = " ADD"
         Me.btnaddvendor.UseVisualStyleBackColor = True
+        '
+        'Btnback
+        '
+        Me.Btnback.Location = New System.Drawing.Point(691, 492)
+        Me.Btnback.Name = "Btnback"
+        Me.Btnback.Size = New System.Drawing.Size(75, 23)
+        Me.Btnback.TabIndex = 83
+        Me.Btnback.Text = "Back"
+        Me.Btnback.UseVisualStyleBackColor = True
         '
         'Taskbar1
         '
@@ -196,6 +206,7 @@ Partial Class addvendor
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(966, 546)
+        Me.Controls.Add(Me.Btnback)
         Me.Controls.Add(Me.dgvvendor)
         Me.Controls.Add(Me.txtgst)
         Me.Controls.Add(Me.txtvendoremail)
@@ -237,4 +248,5 @@ Partial Class addvendor
     Friend WithEvents Label4 As Label
     Friend WithEvents dgvvendor As DataGridView
     Friend WithEvents btnaddvendor As Button
+    Friend WithEvents Btnback As Button
 End Class

@@ -15,7 +15,7 @@ Imports System.Text
 
 Public Class Form1
     Protected sqlstartdb As startdb = New startdb
-    Private Sub btnlogin_Click(sender As Object, e As EventArgs) Handles btnlogin.Click
+    Private Sub btnlogin_Click(sender As Object, e As EventArgs) Handles btnlogin.Click, Btnback.Click
         Dim dt As New DataTable()
         Dim sqldr As SQLite.SQLiteDataReader
         Dim frmmenu As New LoginForm1()

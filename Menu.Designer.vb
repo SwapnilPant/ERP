@@ -25,7 +25,6 @@ Partial Class Menu
         Me.btnaddinvoice = New System.Windows.Forms.Button()
         Me.btnsettings = New System.Windows.Forms.Button()
         Me.btnvendor = New System.Windows.Forms.Button()
-        Me.btnlogout = New System.Windows.Forms.Button()
         Me.btnhistory = New System.Windows.Forms.Button()
         Me.Taskbar1 = New ERP_Trial_1.taskbar()
         Me.btnadd = New System.Windows.Forms.Button()
@@ -65,15 +64,6 @@ Partial Class Menu
         Me.btnvendor.TabIndex = 2
         Me.btnvendor.Text = "Vendor"
         Me.btnvendor.UseVisualStyleBackColor = True
-        '
-        'btnlogout
-        '
-        Me.btnlogout.Location = New System.Drawing.Point(938, 29)
-        Me.btnlogout.Name = "btnlogout"
-        Me.btnlogout.Size = New System.Drawing.Size(75, 23)
-        Me.btnlogout.TabIndex = 3
-        Me.btnlogout.Text = "Logout"
-        Me.btnlogout.UseVisualStyleBackColor = True
         '
         'btnhistory
         '
@@ -191,7 +181,6 @@ Partial Class Menu
         Me.Controls.Add(Me.btnadd)
         Me.Controls.Add(Me.Taskbar1)
         Me.Controls.Add(Me.btnhistory)
-        Me.Controls.Add(Me.btnlogout)
         Me.Controls.Add(Me.btninvoicehistory)
         Me.Controls.Add(Me.btnvendorhistory)
         Me.Controls.Add(Me.btnvendor)
@@ -209,7 +198,6 @@ Partial Class Menu
     Friend WithEvents btnaddinvoice As Button
     Friend WithEvents btnsettings As Button
     Friend WithEvents btnvendor As Button
-    Friend WithEvents btnlogout As Button
     Friend WithEvents btnhistory As Button
     Friend WithEvents Taskbar1 As taskbar
     Friend WithEvents btnadd As Button

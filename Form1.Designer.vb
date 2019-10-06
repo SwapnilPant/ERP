@@ -28,6 +28,7 @@ Partial Class Form1
         Me.btnlogin = New System.Windows.Forms.Button()
         Me.llblforgot = New System.Windows.Forms.LinkLabel()
         Me.status = New System.Windows.Forms.Label()
+        Me.Btnback = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'txtname
@@ -66,7 +67,7 @@ Partial Class Form1
         '
         'btnlogin
         '
-        Me.btnlogin.Location = New System.Drawing.Point(568, 407)
+        Me.btnlogin.Location = New System.Drawing.Point(601, 407)
         Me.btnlogin.Name = "btnlogin"
         Me.btnlogin.Size = New System.Drawing.Size(75, 23)
         Me.btnlogin.TabIndex = 2
@@ -88,9 +89,18 @@ Partial Class Form1
         Me.status.AutoSize = True
         Me.status.Location = New System.Drawing.Point(187, 67)
         Me.status.Name = "status"
-        Me.status.Size = New System.Drawing.Size(37, 13)
+        Me.status.Size = New System.Drawing.Size(134, 13)
         Me.status.TabIndex = 4
-        Me.status.Text = "Status"
+        Me.status.Text = "WE are under construction"
+        '
+        'Btnback
+        '
+        Me.Btnback.Location = New System.Drawing.Point(740, 407)
+        Me.Btnback.Name = "Btnback"
+        Me.Btnback.Size = New System.Drawing.Size(75, 23)
+        Me.Btnback.TabIndex = 2
+        Me.Btnback.Text = "Back"
+        Me.Btnback.UseVisualStyleBackColor = True
         '
         'Form1
         '
@@ -99,6 +109,7 @@ Partial Class Form1
         Me.ClientSize = New System.Drawing.Size(924, 558)
         Me.Controls.Add(Me.status)
         Me.Controls.Add(Me.llblforgot)
+        Me.Controls.Add(Me.Btnback)
         Me.Controls.Add(Me.btnlogin)
         Me.Controls.Add(Me.lblpassword)
         Me.Controls.Add(Me.lblname)
@@ -118,4 +129,5 @@ Partial Class Form1
     Friend WithEvents btnlogin As Button
     Friend WithEvents llblforgot As LinkLabel
     Friend WithEvents status As Label
+    Friend WithEvents Btnback As Button
 End Class

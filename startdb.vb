@@ -41,7 +41,7 @@ Public Class startdb
                 & "totalprice real,mode_of_payment text,created_date datetime default current_timestamp,modified_date datetime default current_timestamp)"
                 sqlcomm.ExecuteNonQuery()
                 'invoice item
-                sqlcomm.CommandText = "create table invoice_items(item_no integer primary key autoincrement,item_code text" _
+                sqlcomm.CommandText = "create table invoice_items(item_no integer primary key autoincrement,item_code text, invoice_number integer" _
                             & ",item_quantity integer,item_rate real,discount real,price real,created_date datetime default current_timestamp,modified_date datetime default current_timestamp)"
                 sqlcomm.ExecuteNonQuery()
 
@@ -81,6 +81,7 @@ Public Class startdb
         dtadd.Load(sqldr)
         Return dtadd
     End Function
+
     Public Function getProductDescription(ByVal itemcode As String) As DataTable
         Dim dtadd As New DataTable
         sqlcomm.CommandText = "Select description,base_unit,unit_price from tblstock where item_code='" + itemcode + "'"
@@ -90,18 +91,18 @@ Public Class startdb
     End Function
     Public Function saveinvoice(ByVal customercode As String, ByVal itemcode As String, ByVal itemquantity As String,
                                 ByVal itemrate As String, ByVal discount As String, ByVal tax As String, ByVal modeofpayment As String,
-                                ByVal price As String, ByVal totalprice As String, ByVal dateinv As String, ByVal isinvoice As Boolean) As Boolean
+                                ByVal price As String, ByVal totalprice As String, ByVal dateinv As String, ByVal isinvoice As Boolean, ByVal invoice_no As String) As Boolean
 
         Dim dtadd As New DataTable
         Try
             If isinvoice Then
-                sqlcomm.CommandText = "insert into invoice(customer_code ,tax,mode_of_payment,price,totalprice,created_date) " _
+                sqlcomm.CommandText = "insert into invoice(customer_code ,tax,mode_of_payment,totalprice,created_date) " _
                             & " values(" + customercode + "," + tax + ",'" + modeofpayment + "'," + totalprice + ",'" + dateinv + "');"
-                sqldr = sqlcomm.ExecuteReader
+                sqlcomm.ExecuteNonQuery()
             Else
-                sqlcomm.CommandText = "insert into invoice_items(item_code,item_quantity,item_rate,discount,price,created_date) values(" _
-                                & "'" + itemcode + "'," + itemquantity + "," + itemrate + "," + discount + "," + price + ",'" + dateinv + "')"
-                sqlcomm.ExecuteReader()
+                sqlcomm.CommandText = "insert into invoice_items(item_code,invoice_number,item_quantity,item_rate,discount,price,created_date) values(" _
+                                & "'" + itemcode + "'," + invoice_no + "," + itemquantity + "," + itemrate + "," + discount + "," + price + ",'" + dateinv + "')"
+                sqlcomm.ExecuteNonQuery()
             End If
             Return True
         Catch ex As Exception
@@ -109,10 +110,17 @@ Public Class startdb
         End Try
     End Function
 
-    Public Function setitemstructure() As DataTable
+    Public Function setitemstructure(Optional ByVal isEmpty As Boolean = True) As DataTable
         Dim dtadd As New DataTable
-        sqlcomm.CommandText = "Select null As [Item Code],null As [Prodcut Name],null As [Description],null As [Unit Price]," _
-                                        & " null As [Quantity],null As [Base unit],null As [Discount],null As [Total Price] from invoice As inv "
+        If isEmpty Then
+            sqlcomm.CommandText = "Select null As [Item Code],null As [Prodcut Name],null As [Description],null As [Unit Price]," _
+                                        & " null As [Quantity],null As [Base unit],null As [Discount],null As [Total Price] from invoice where 1=0"
+        Else
+            sqlcomm.CommandText = "Select inv.invoice_number As [Invoice Number],item As [Product Name],cus.customer_name As [Customer Name],tax  As [Tax]," _
+                            & " totalprice As [Total Price],mode_of_payment As [Mode of payment],created_date As [Created Date] from invoice as inv " _
+                            & " inner join customer cus on cus.customer_code = inv.customer_code inner join invoice_items as item on inv.invoice_number = item.invoice_number"
+        End If
+
         Try
             sqldr = sqlcomm.ExecuteReader
             dtadd.Load(sqldr)
@@ -161,7 +169,7 @@ Public Class startdb
         Try
             sqlcomm.CommandText = "insert into vendor(vendor_name ,vendor_number,vendor_address,vendor_gst,vendor_email,created_date) " _
                         & " values('" + vendorname + "'," + vendorno + ",'" + address + "','" + gst + "','" + email + "','" + dateinv + "');"
-            sqldr = sqlcomm.ExecuteReader
+            sqlcomm.ExecuteNonQuery()
             Return True
         Catch ex As Exception
             Return False

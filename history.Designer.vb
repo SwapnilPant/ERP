@@ -30,7 +30,7 @@ Partial Class history
         Me.DateTimePicker2 = New System.Windows.Forms.DateTimePicker()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
-        Me.txtproductname = New System.Windows.Forms.TextBox()
+        Me.txtsubtotal = New System.Windows.Forms.TextBox()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.TextBox3 = New System.Windows.Forms.TextBox()
         Me.lblvendorname = New System.Windows.Forms.Label()
@@ -43,6 +43,8 @@ Partial Class history
         Me.lblitemcategory = New System.Windows.Forms.Label()
         Me.lblproductname = New System.Windows.Forms.Label()
         Me.Button1 = New System.Windows.Forms.Button()
+        Me.Txtquantity = New System.Windows.Forms.TextBox()
+        Me.btnfetch = New System.Windows.Forms.Button()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -112,12 +114,12 @@ Partial Class history
         Me.Label4.TabIndex = 1
         Me.Label4.Text = "Transaction"
         '
-        'txtproductname
+        'txtsubtotal
         '
-        Me.txtproductname.Location = New System.Drawing.Point(344, 147)
-        Me.txtproductname.Name = "txtproductname"
-        Me.txtproductname.Size = New System.Drawing.Size(100, 20)
-        Me.txtproductname.TabIndex = 82
+        Me.txtsubtotal.Location = New System.Drawing.Point(816, 402)
+        Me.txtsubtotal.Name = "txtsubtotal"
+        Me.txtsubtotal.Size = New System.Drawing.Size(100, 20)
+        Me.txtsubtotal.TabIndex = 82
         '
         'Label6
         '
@@ -221,6 +223,22 @@ Partial Class history
         Me.Button1.Text = "Back"
         Me.Button1.UseVisualStyleBackColor = True
         '
+        'Txtquantity
+        '
+        Me.Txtquantity.Location = New System.Drawing.Point(676, 402)
+        Me.Txtquantity.Name = "Txtquantity"
+        Me.Txtquantity.Size = New System.Drawing.Size(100, 20)
+        Me.Txtquantity.TabIndex = 82
+        '
+        'btnfetch
+        '
+        Me.btnfetch.Location = New System.Drawing.Point(806, 145)
+        Me.btnfetch.Name = "btnfetch"
+        Me.btnfetch.Size = New System.Drawing.Size(75, 23)
+        Me.btnfetch.TabIndex = 93
+        Me.btnfetch.Text = "fetch"
+        Me.btnfetch.UseVisualStyleBackColor = True
+        '
         'history
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -229,6 +247,7 @@ Partial Class history
         Me.AutoSize = True
         Me.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.ClientSize = New System.Drawing.Size(939, 488)
+        Me.Controls.Add(Me.btnfetch)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.comboBox2)
         Me.Controls.Add(Me.txtcode)
@@ -240,7 +259,8 @@ Partial Class history
         Me.Controls.Add(Me.lblcustomername)
         Me.Controls.Add(Me.TextBox3)
         Me.Controls.Add(Me.lblvendorname)
-        Me.Controls.Add(Me.txtproductname)
+        Me.Controls.Add(Me.Txtquantity)
+        Me.Controls.Add(Me.txtsubtotal)
         Me.Controls.Add(Me.Label6)
         Me.Controls.Add(Me.DateTimePicker2)
         Me.Controls.Add(Me.Label3)
@@ -266,7 +286,7 @@ Partial Class history
     Friend WithEvents DateTimePicker2 As DateTimePicker
     Friend WithEvents Label3 As Label
     Friend WithEvents Label4 As Label
-    Private WithEvents txtproductname As TextBox
+    Private WithEvents txtsubtotal As TextBox
     Friend WithEvents Label6 As Label
     Friend WithEvents TextBox3 As TextBox
     Friend WithEvents lblvendorname As Label
@@ -279,4 +299,6 @@ Partial Class history
     Private WithEvents lblitemcategory As Label
     Private WithEvents lblproductname As Label
     Friend WithEvents Button1 As Button
+    Private WithEvents Txtquantity As TextBox
+    Friend WithEvents btnfetch As Button
 End Class

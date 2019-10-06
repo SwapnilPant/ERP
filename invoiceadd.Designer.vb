@@ -140,21 +140,21 @@ Partial Class invoiceadd
         Me.txtcustomernumber.Location = New System.Drawing.Point(230, 134)
         Me.txtcustomernumber.Name = "txtcustomernumber"
         Me.txtcustomernumber.Size = New System.Drawing.Size(122, 20)
-        Me.txtcustomernumber.TabIndex = 20
+        Me.txtcustomernumber.TabIndex = 37
         '
         'txtcustomername
         '
         Me.txtcustomername.Location = New System.Drawing.Point(230, 96)
         Me.txtcustomername.Name = "txtcustomername"
         Me.txtcustomername.Size = New System.Drawing.Size(122, 20)
-        Me.txtcustomername.TabIndex = 22
+        Me.txtcustomername.TabIndex = 36
         '
         'txttotal
         '
         Me.txttotal.Location = New System.Drawing.Point(571, 413)
         Me.txttotal.Name = "txttotal"
         Me.txttotal.Size = New System.Drawing.Size(122, 20)
-        Me.txttotal.TabIndex = 30
+        Me.txttotal.TabIndex = 48
         '
         'txtcustomeraddress
         '
@@ -162,7 +162,7 @@ Partial Class invoiceadd
         Me.txtcustomeraddress.Multiline = True
         Me.txtcustomeraddress.Name = "txtcustomeraddress"
         Me.txtcustomeraddress.Size = New System.Drawing.Size(122, 46)
-        Me.txtcustomeraddress.TabIndex = 34
+        Me.txtcustomeraddress.TabIndex = 38
         '
         'DateTimePicker1
         '
@@ -230,7 +230,7 @@ Partial Class invoiceadd
         Me.btnreset.Location = New System.Drawing.Point(720, 410)
         Me.btnreset.Name = "btnreset"
         Me.btnreset.Size = New System.Drawing.Size(75, 23)
-        Me.btnreset.TabIndex = 64
+        Me.btnreset.TabIndex = 50
         Me.btnreset.Text = "Reset"
         Me.btnreset.UseVisualStyleBackColor = True
         '
@@ -239,7 +239,7 @@ Partial Class invoiceadd
         Me.btnsave.Location = New System.Drawing.Point(812, 410)
         Me.btnsave.Name = "btnsave"
         Me.btnsave.Size = New System.Drawing.Size(75, 23)
-        Me.btnsave.TabIndex = 63
+        Me.btnsave.TabIndex = 49
         Me.btnsave.Text = "Save"
         Me.btnsave.UseVisualStyleBackColor = True
         '
@@ -248,7 +248,7 @@ Partial Class invoiceadd
         Me.txtquantity.Location = New System.Drawing.Point(459, 267)
         Me.txtquantity.Name = "txtquantity"
         Me.txtquantity.Size = New System.Drawing.Size(43, 20)
-        Me.txtquantity.TabIndex = 60
+        Me.txtquantity.TabIndex = 42
         Me.txtquantity.Text = "0"
         '
         'txtdiscription
@@ -256,21 +256,21 @@ Partial Class invoiceadd
         Me.txtdiscription.Location = New System.Drawing.Point(210, 267)
         Me.txtdiscription.Name = "txtdiscription"
         Me.txtdiscription.Size = New System.Drawing.Size(185, 20)
-        Me.txtdiscription.TabIndex = 57
+        Me.txtdiscription.TabIndex = 40
         '
         'txtunitprice
         '
         Me.txtunitprice.Location = New System.Drawing.Point(401, 267)
         Me.txtunitprice.Name = "txtunitprice"
         Me.txtunitprice.Size = New System.Drawing.Size(52, 20)
-        Me.txtunitprice.TabIndex = 56
+        Me.txtunitprice.TabIndex = 41
         '
         'txtdiscount
         '
         Me.txtdiscount.Location = New System.Drawing.Point(558, 267)
         Me.txtdiscount.Name = "txtdiscount"
         Me.txtdiscount.Size = New System.Drawing.Size(100, 20)
-        Me.txtdiscount.TabIndex = 61
+        Me.txtdiscount.TabIndex = 44
         Me.txtdiscount.Text = "0"
         '
         'lbldiscount
@@ -328,7 +328,7 @@ Partial Class invoiceadd
         Me.btnadd.Location = New System.Drawing.Point(812, 265)
         Me.btnadd.Name = "btnadd"
         Me.btnadd.Size = New System.Drawing.Size(75, 23)
-        Me.btnadd.TabIndex = 65
+        Me.btnadd.TabIndex = 45
         Me.btnadd.Text = "+ ADD"
         Me.btnadd.UseVisualStyleBackColor = True
         '
@@ -340,7 +340,7 @@ Partial Class invoiceadd
         Me.cbxproductname.Location = New System.Drawing.Point(49, 267)
         Me.cbxproductname.Name = "cbxproductname"
         Me.cbxproductname.Size = New System.Drawing.Size(145, 21)
-        Me.cbxproductname.TabIndex = 66
+        Me.cbxproductname.TabIndex = 39
         '
         'TextBox1
         '
@@ -356,7 +356,7 @@ Partial Class invoiceadd
         Me.cbxtax.Location = New System.Drawing.Point(263, 410)
         Me.cbxtax.Name = "cbxtax"
         Me.cbxtax.Size = New System.Drawing.Size(44, 21)
-        Me.cbxtax.TabIndex = 66
+        Me.cbxtax.TabIndex = 47
         '
         'dgitemdetails
         '
@@ -370,14 +370,14 @@ Partial Class invoiceadd
         Me.dgitemdetails.Name = "dgitemdetails"
         Me.dgitemdetails.ReadOnly = True
         Me.dgitemdetails.Size = New System.Drawing.Size(749, 101)
-        Me.dgitemdetails.TabIndex = 103
+        Me.dgitemdetails.TabIndex = 46
         '
         'btnback
         '
-        Me.btnback.Location = New System.Drawing.Point(12, 8)
+        Me.btnback.Location = New System.Drawing.Point(812, 439)
         Me.btnback.Name = "btnback"
         Me.btnback.Size = New System.Drawing.Size(75, 23)
-        Me.btnback.TabIndex = 104
+        Me.btnback.TabIndex = 51
         Me.btnback.Text = "Back"
         Me.btnback.UseVisualStyleBackColor = True
         '
@@ -416,7 +416,7 @@ Partial Class invoiceadd
         Me.cbxbaseunit.Location = New System.Drawing.Point(505, 266)
         Me.cbxbaseunit.Name = "cbxbaseunit"
         Me.cbxbaseunit.Size = New System.Drawing.Size(47, 21)
-        Me.cbxbaseunit.TabIndex = 107
+        Me.cbxbaseunit.TabIndex = 43
         '
         'lbltax
         '

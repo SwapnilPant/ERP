@@ -16,7 +16,7 @@
             dtvendorlistdb = startdb.getVendorList(False)
             dtvendorlist.Merge(dtvendorlistdb, True, MissingSchemaAction.Ignore)
             cbxvendor.DataSource = dtvendorlist
-            dtadd = startdb.getstock(False)
+            dtadd = startdb.getstock(True)
             dgvStock.DataSource = dtadd
             cbxbaseunit.SelectedIndex = 0
             lblpurchaseno.Text = startdb.getpurchaseno()
@@ -93,5 +93,11 @@
 
     Private Sub btnreset_Click(sender As Object, e As EventArgs) Handles btnreset.Click
         reset(True)
+    End Sub
+
+    Private Sub Btnback_Click(sender As Object, e As EventArgs) Handles Btnback.Click
+        Dim frmmenu As New Menu
+        frmmenu.Show()
+        Me.Close()
     End Sub
 End Class

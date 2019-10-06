@@ -13,6 +13,7 @@
     Private Sub btnaddvendor_Click(sender As Object, e As EventArgs) Handles btnaddvendor.Click
         dtadd.Rows.Add(txtvendorname.Text.ToString, txtvendornumber.Text.ToString, txtvendoraddress.Text.ToString, txtgst.Text.ToString, txtvendoremail.Text.ToString)
         dgvvendor.DataSource = dtadd
+        reset()
     End Sub
 
     Private Sub btnsave_Click(sender As Object, e As EventArgs) Handles btnsave.Click
@@ -41,4 +42,10 @@
         txtvendornumber.Text = ""
         txtvendoremail.Text = ""
     End Function
+
+    Private Sub Btnback_Click(sender As Object, e As EventArgs) Handles Btnback.Click
+        Dim frmmenu As New Menu
+        frmmenu.Show()
+        Me.Close()
+    End Sub
 End Class

@@ -23,6 +23,8 @@ Public Class invoiceadd
             dtprodlistdb = startdb.getProductList
             dtprodlist.Merge(dtprodlistdb)
             cbxproductname.DataSource = dtprodlist
+            txtdiscount.Text = 0
+            txtquantity.Text = 0
         Catch ex As Exception
             MsgBox(ex.Message)
         End Try
@@ -60,13 +62,13 @@ Public Class invoiceadd
             For Each dr As DataRow In dtinvvoice.Rows
                 startdb.saveinvoice(dtcustomercode(0)(0), dr("Item Code").ToString, dr("Quantity").ToString, dr("Unit Price").ToString, dr("Discount").ToString,
                                         lbltax.Text.ToString, If(btncash.Checked, "cash", "online"), dr("Total Price"),
-                                          txttotal.Text.ToString, DateTimePicker1.Value.ToString("dd-MM-yyyy"), True)
+                                          txttotal.Text.ToString, DateTimePicker1.Value.ToString("dd-MM-yyyy"), True, Lblinvoiceno.Text.ToString)
                 Exit For
             Next
             For Each dr As DataRow In dtinvvoice.Rows
                 startdb.saveinvoice(dtcustomercode(0)(0), dr("Item Code").ToString, dr("Quantity").ToString, dr("Unit Price").ToString, dr("Discount").ToString,
                                     lbltax.Text.ToString, If(btncash.Checked, "cash", "online"), dr("Total Price"),
-                                      txttotal.Text.ToString, DateTimePicker1.Value.ToString("dd-MM-yyyy"), False)
+                                      txttotal.Text.ToString, DateTimePicker1.Value.ToString("dd-MM-yyyy"), False, Lblinvoiceno.Text.ToString)
             Next
         Catch ex As Exception
         End Try
@@ -76,8 +78,8 @@ Public Class invoiceadd
     Protected Function clearControl()
         cbxproductname.SelectedIndex = 0
         txtdiscription.Text = ""
-        txtquantity.Text = ""
-        txtdiscount.Text = ""
+        txtquantity.Text = 0
+        txtdiscount.Text = 0
         txtunitprice.Text = ""
         cbxbaseunit.SelectedIndex = 0
     End Function
@@ -109,7 +111,7 @@ Public Class invoiceadd
         Dim dt As New DataTable
         dt = startdb.getProductDescription(cbxproductname.SelectedValue.ToString)
         If isNew Then
-            dtadd.Rows.Add(cbxproductname.SelectedValue.ToString, DirectCast(cbxproductname.SelectedItem, System.Data.DataRowView).Row.ItemArray(cbxproductname.SelectedIndex).ToString, dt(0)("description").ToString,
+            dtadd.Rows.Add(cbxproductname.SelectedValue.ToString, DirectCast(cbxproductname.SelectedItem, System.Data.DataRowView).Row.ItemArray(1).ToString, dt(0)("description").ToString,
                        txtunitprice.Text.ToString, txtquantity.Text.ToString, cbxbaseunit.SelectedItem.ToString,
                        txtdiscount.Text.ToString, ((Int(txtunitprice.Text.ToString) * Int(txtquantity.Text.ToString)) - Int(txtdiscount.Text.ToString)))
             dgitemdetails.DataSource = dtadd

@@ -61,24 +61,25 @@ Partial Class addstock
         Me.txttotaldiscount = New System.Windows.Forms.TextBox()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.lblpurchaseno = New System.Windows.Forms.Label()
+        Me.Btnback = New System.Windows.Forms.Button()
         CType(Me.dgvStock, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'btnreset
         '
-        Me.btnreset.Location = New System.Drawing.Point(764, 468)
+        Me.btnreset.Location = New System.Drawing.Point(722, 459)
         Me.btnreset.Name = "btnreset"
         Me.btnreset.Size = New System.Drawing.Size(75, 23)
-        Me.btnreset.TabIndex = 45
+        Me.btnreset.TabIndex = 51
         Me.btnreset.Text = "Reset"
         Me.btnreset.UseVisualStyleBackColor = True
         '
         'btnsave
         '
-        Me.btnsave.Location = New System.Drawing.Point(859, 468)
+        Me.btnsave.Location = New System.Drawing.Point(803, 459)
         Me.btnsave.Name = "btnsave"
         Me.btnsave.Size = New System.Drawing.Size(75, 23)
-        Me.btnsave.TabIndex = 44
+        Me.btnsave.TabIndex = 50
         Me.btnsave.Text = "Save"
         Me.btnsave.UseVisualStyleBackColor = True
         '
@@ -90,30 +91,30 @@ Partial Class addstock
         Me.cbxitemcategory.Location = New System.Drawing.Point(173, 112)
         Me.cbxitemcategory.Name = "cbxitemcategory"
         Me.cbxitemcategory.Size = New System.Drawing.Size(121, 21)
-        Me.cbxitemcategory.TabIndex = 43
+        Me.cbxitemcategory.TabIndex = 34
         '
         'cbxbaseunit
         '
         Me.cbxbaseunit.AllowDrop = True
         Me.cbxbaseunit.Items.AddRange(New Object() {"pcs", "box", "free", "nos", "dozen", "meter", "cm"})
-        Me.cbxbaseunit.Location = New System.Drawing.Point(385, 112)
+        Me.cbxbaseunit.Location = New System.Drawing.Point(463, 211)
         Me.cbxbaseunit.Name = "cbxbaseunit"
-        Me.cbxbaseunit.Size = New System.Drawing.Size(121, 21)
-        Me.cbxbaseunit.TabIndex = 41
+        Me.cbxbaseunit.Size = New System.Drawing.Size(66, 21)
+        Me.cbxbaseunit.TabIndex = 39
         '
         'txtqty
         '
-        Me.txtqty.Location = New System.Drawing.Point(342, 214)
+        Me.txtqty.Location = New System.Drawing.Point(342, 211)
         Me.txtqty.Name = "txtqty"
-        Me.txtqty.Size = New System.Drawing.Size(100, 20)
-        Me.txtqty.TabIndex = 39
+        Me.txtqty.Size = New System.Drawing.Size(74, 20)
+        Me.txtqty.TabIndex = 38
         '
         'txttotal
         '
         Me.txttotal.Location = New System.Drawing.Point(587, 459)
         Me.txttotal.Name = "txttotal"
         Me.txttotal.Size = New System.Drawing.Size(100, 20)
-        Me.txttotal.TabIndex = 38
+        Me.txttotal.TabIndex = 49
         Me.txttotal.Text = "0"
         '
         'txtunitprice
@@ -125,10 +126,10 @@ Partial Class addstock
         '
         'txtdiscount
         '
-        Me.txtdiscount.Location = New System.Drawing.Point(549, 214)
+        Me.txtdiscount.Location = New System.Drawing.Point(587, 214)
         Me.txtdiscount.Name = "txtdiscount"
         Me.txtdiscount.Size = New System.Drawing.Size(100, 20)
-        Me.txtdiscount.TabIndex = 36
+        Me.txtdiscount.TabIndex = 41
         Me.txtdiscount.Text = "0"
         '
         'txttax
@@ -136,7 +137,7 @@ Partial Class addstock
         Me.txttax.Location = New System.Drawing.Point(739, 216)
         Me.txttax.Name = "txttax"
         Me.txttax.Size = New System.Drawing.Size(100, 20)
-        Me.txttax.TabIndex = 35
+        Me.txttax.TabIndex = 42
         Me.txttax.Text = "0"
         '
         'textBox4
@@ -151,14 +152,14 @@ Partial Class addstock
         Me.txtdescription.Location = New System.Drawing.Point(173, 181)
         Me.txtdescription.Name = "txtdescription"
         Me.txtdescription.Size = New System.Drawing.Size(333, 20)
-        Me.txtdescription.TabIndex = 34
+        Me.txtdescription.TabIndex = 36
         '
         'txtproductname
         '
         Me.txtproductname.Location = New System.Drawing.Point(173, 142)
         Me.txtproductname.Name = "txtproductname"
         Me.txtproductname.Size = New System.Drawing.Size(100, 20)
-        Me.txtproductname.TabIndex = 33
+        Me.txtproductname.TabIndex = 35
         '
         'lblpurchaserate
         '
@@ -172,7 +173,7 @@ Partial Class addstock
         'lbldiscount
         '
         Me.lbldiscount.AutoSize = True
-        Me.lbldiscount.Location = New System.Drawing.Point(494, 216)
+        Me.lbldiscount.Location = New System.Drawing.Point(532, 217)
         Me.lbldiscount.Name = "lbldiscount"
         Me.lbldiscount.Size = New System.Drawing.Size(49, 13)
         Me.lbldiscount.TabIndex = 31
@@ -181,7 +182,7 @@ Partial Class addstock
         'lbluom
         '
         Me.lbluom.AutoSize = True
-        Me.lbluom.Location = New System.Drawing.Point(332, 112)
+        Me.lbluom.Location = New System.Drawing.Point(422, 214)
         Me.lbluom.Name = "lbluom"
         Me.lbluom.Size = New System.Drawing.Size(30, 13)
         Me.lbluom.TabIndex = 30
@@ -208,7 +209,7 @@ Partial Class addstock
         'lblquantity
         '
         Me.lblquantity.AutoSize = True
-        Me.lblquantity.Location = New System.Drawing.Point(290, 217)
+        Me.lblquantity.Location = New System.Drawing.Point(279, 214)
         Me.lblquantity.Name = "lblquantity"
         Me.lblquantity.Size = New System.Drawing.Size(46, 13)
         Me.lblquantity.TabIndex = 27
@@ -266,7 +267,7 @@ Partial Class addstock
         Me.DateTimePicker1.Location = New System.Drawing.Point(711, 29)
         Me.DateTimePicker1.Name = "DateTimePicker1"
         Me.DateTimePicker1.Size = New System.Drawing.Size(200, 20)
-        Me.DateTimePicker1.TabIndex = 79
+        Me.DateTimePicker1.TabIndex = 32
         '
         'lable6
         '
@@ -281,7 +282,7 @@ Partial Class addstock
         '
         Me.lblvendorname.AutoSize = True
         Me.lblvendorname.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblvendorname.Location = New System.Drawing.Point(664, 84)
+        Me.lblvendorname.Location = New System.Drawing.Point(584, 84)
         Me.lblvendorname.Name = "lblvendorname"
         Me.lblvendorname.Size = New System.Drawing.Size(95, 17)
         Me.lblvendorname.TabIndex = 80
@@ -290,10 +291,10 @@ Partial Class addstock
         'cbxvendor
         '
         Me.cbxvendor.FormattingEnabled = True
-        Me.cbxvendor.Location = New System.Drawing.Point(667, 120)
+        Me.cbxvendor.Location = New System.Drawing.Point(690, 84)
         Me.cbxvendor.Name = "cbxvendor"
         Me.cbxvendor.Size = New System.Drawing.Size(244, 21)
-        Me.cbxvendor.TabIndex = 81
+        Me.cbxvendor.TabIndex = 45
         '
         'Label1
         '
@@ -320,29 +321,29 @@ Partial Class addstock
         Me.dgvStock.Name = "dgvStock"
         Me.dgvStock.ReadOnly = True
         Me.dgvStock.Size = New System.Drawing.Size(889, 187)
-        Me.dgvStock.TabIndex = 82
+        Me.dgvStock.TabIndex = 44
         '
         'btnadd
         '
         Me.btnadd.Location = New System.Drawing.Point(859, 216)
         Me.btnadd.Name = "btnadd"
         Me.btnadd.Size = New System.Drawing.Size(75, 23)
-        Me.btnadd.TabIndex = 83
+        Me.btnadd.TabIndex = 43
         Me.btnadd.Text = "Add"
         Me.btnadd.UseVisualStyleBackColor = True
         '
         'txtvendorinvoiceno
         '
-        Me.txtvendorinvoiceno.Location = New System.Drawing.Point(739, 158)
+        Me.txtvendorinvoiceno.Location = New System.Drawing.Point(739, 129)
         Me.txtvendorinvoiceno.Name = "txtvendorinvoiceno"
         Me.txtvendorinvoiceno.Size = New System.Drawing.Size(100, 20)
-        Me.txtvendorinvoiceno.TabIndex = 35
+        Me.txtvendorinvoiceno.TabIndex = 46
         '
         'Label2
         '
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(595, 158)
+        Me.Label2.Location = New System.Drawing.Point(584, 129)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(124, 17)
         Me.Label2.TabIndex = 80
@@ -371,7 +372,7 @@ Partial Class addstock
         Me.txttotaltax.Location = New System.Drawing.Point(316, 457)
         Me.txttotaltax.Name = "txttotaltax"
         Me.txttotaltax.Size = New System.Drawing.Size(100, 20)
-        Me.txttotaltax.TabIndex = 35
+        Me.txttotaltax.TabIndex = 48
         Me.txttotaltax.Text = "0"
         '
         'txttotaldiscount
@@ -379,7 +380,7 @@ Partial Class addstock
         Me.txttotaldiscount.Location = New System.Drawing.Point(126, 455)
         Me.txttotaldiscount.Name = "txttotaldiscount"
         Me.txttotaldiscount.Size = New System.Drawing.Size(100, 20)
-        Me.txttotaldiscount.TabIndex = 36
+        Me.txttotaldiscount.TabIndex = 47
         Me.txttotaldiscount.Text = "0"
         '
         'Label5
@@ -400,6 +401,15 @@ Partial Class addstock
         Me.lblpurchaseno.TabIndex = 26
         Me.lblpurchaseno.Text = "0"
         '
+        'Btnback
+        '
+        Me.Btnback.Location = New System.Drawing.Point(885, 459)
+        Me.Btnback.Name = "Btnback"
+        Me.Btnback.Size = New System.Drawing.Size(75, 23)
+        Me.Btnback.TabIndex = 52
+        Me.Btnback.Text = "Back"
+        Me.Btnback.UseVisualStyleBackColor = True
+        '
         'addstock
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -413,6 +423,7 @@ Partial Class addstock
         Me.Controls.Add(Me.DateTimePicker1)
         Me.Controls.Add(Me.lable6)
         Me.Controls.Add(Me.btnreset)
+        Me.Controls.Add(Me.Btnback)
         Me.Controls.Add(Me.btnsave)
         Me.Controls.Add(Me.cbxitemcategory)
         Me.Controls.Add(Me.cbxbaseunit)
@@ -491,4 +502,5 @@ Partial Class addstock
     Private WithEvents txttotaldiscount As TextBox
     Private WithEvents Label5 As Label
     Private WithEvents lblpurchaseno As Label
+    Private WithEvents Btnback As Button
 End Class
