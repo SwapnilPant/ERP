@@ -37,7 +37,26 @@ Public Class Menu
 
     End Sub
 
-    Private Sub btnhistory_Click(sender As Object, e As EventArgs) Handles btnhistory.Click, btninvoicehistory.Click, btnvendorhistory.Click, btndisplay.Click
+    Private Sub btnhistory_Click(sender As Object, e As EventArgs) Handles btnhistory.Click
+        form_history.Text = "Transaction History"
+        form_history.Show()
+        Me.Close()
+    End Sub
+
+    Private Sub btninvoicehistory_Click(sender As Object, e As EventArgs) Handles btninvoicehistory.Click
+        form_history.Text = "Invoice History"
+        form_history.Show()
+        Me.Close()
+    End Sub
+
+    Private Sub btndisplay_Click(sender As Object, e As EventArgs) Handles btndisplay.Click
+        form_history.Text = "Inventory History"
+        form_history.Show()
+        Me.Close()
+    End Sub
+
+    Private Sub btnvendorhistory_Click(sender As Object, e As EventArgs) Handles btnvendorhistory.Click
+        form_history.Text = "Vendor History"
         form_history.Show()
         Me.Close()
     End Sub

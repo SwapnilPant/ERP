@@ -112,16 +112,28 @@ Public Class startdb
 
     Public Function setitemstructure(Optional ByVal isEmpty As Boolean = True) As DataTable
         Dim dtadd As New DataTable
+
+
         If isEmpty Then
             sqlcomm.CommandText = "Select null As [Item Code],null As [Prodcut Name],null As [Description],null As [Unit Price]," _
                                         & " null As [Quantity],null As [Base unit],null As [Discount],null As [Total Price] from invoice where 1=0"
         Else
-            sqlcomm.CommandText = "Select inv.invoice_number As [Invoice Number],item As [Product Name],cus.customer_name As [Customer Name],tax  As [Tax]," _
-                            & " totalprice As [Total Price],mode_of_payment As [Mode of payment],created_date As [Created Date] from invoice as inv " _
-                            & " inner join customer cus on cus.customer_code = inv.customer_code inner join invoice_items as item on inv.invoice_number = item.invoice_number"
+            sqlcomm.CommandText = "select inv.invoice_number as [Invoice Number],cus.customer_name as [CUSTOMER],cus.customer_number as [CUSTOMER NO.], " _
+       & " inv.mode_of_payment as [MODE OF PAYMENT], stk.item_code as[ITEM CODE], " _
+      & " stk.productname As [PRODUCT NAME],stk.description As [DESCRIPTION],                                   " _
+      & " stk.item_category as [ITEM CATEGORY],ivt.item_rate as [ITEM PRICE],                                   " _
+      & " ivt.item_quantity As [QUANTITY],stk.base_unit As [BASE UNIT] ,                                        " _
+      & " ivt.discount as [ITEM DISCOUNT] ,ivt.price as [NET PRICE],                                            " _
+      & " inv.tax As [TAX], inv.totalprice As[TOTAL PRICE]                                                      " _
+      & " from invoice inv inner join invoice_items as ivt on inv.invoice_number = ivt.invoice_number           " _
+      & " inner join customer As cus On cus.customer_code =inv.customer_code                                    " _
+      & " inner join tblstock as stk on ivt.item_code = stk.item_code;                                          "
         End If
 
         Try
+
+
+
             sqldr = sqlcomm.ExecuteReader
             dtadd.Load(sqldr)
         Catch ex As Exception
@@ -142,17 +154,23 @@ Public Class startdb
     End Function
 
     'for vendor
-    Public Function getVendorList(Optional ByVal empty As Boolean = True) As DataTable
+    Public Function getVendorList(Optional ByVal empty As Boolean = True, Optional ByVal vendorid As String = "0") As DataTable
         Dim dtadd As New DataTable
         Try
             If empty Then
-                sqlcomm.CommandText = "select vendor_name as [Vendor Name],vendor_number as [Vendor Number]" _
+                sqlcomm.CommandText = "select vendor_name + vendor_number as [Vendor Name],vendor_number as [Vendor Number]" _
                             & ",vendor_address as [Vendor Address],vendor_gst as [Vendor GST],vendor_email as [Email] from vendor where 1=0"
                 sqldr = sqlcomm.ExecuteReader
                 dtadd.Load(sqldr)
             Else
-                sqlcomm.CommandText = "select vendor_code as [Vendor Code],vendor_name as [Vendor Name],vendor_number as [Vendor Number]" _
+                If vendorid = "0" Then
+                    sqlcomm.CommandText = "select vendor_code as [Vendor Code],vendor_name || ' (' || vendor_number || ')' as [Vendor Name],vendor_number as [Vendor Number]" _
                             & ",vendor_address as [Vendor Address],vendor_gst as [Vendor GST],vendor_email as [Email] from vendor"
+                    sqldr = sqlcomm.ExecuteReader
+                    dtadd.Load(sqldr)
+                End If
+                sqlcomm.CommandText = "select vendor_code as [Vendor Code],vendor_name || ' (' || vendor_number || ')' as [Vendor Name],vendor_number as [Vendor Number]" _
+                            & ",vendor_address as [Vendor Address],vendor_gst as [Vendor GST],vendor_email as [Email] from vendor where vendor_code = " + vendorid
                 sqldr = sqlcomm.ExecuteReader
                 dtadd.Load(sqldr)
             End If
@@ -227,6 +245,38 @@ Public Class startdb
             Return True
         Catch ex As Exception
             Return False
+        End Try
+    End Function
+
+    Public Function getInvoice(Optional ByVal isall As Boolean = True) As DataTable
+        Dim dtadd As New DataTable
+        Try
+            If isall Then
+                sqlcomm.CommandText = "Select invoice_number,invoice_number as [invoice] from invoice "
+            Else
+
+            End If
+            sqldr = sqlcomm.ExecuteReader
+            dtadd.Load(sqldr)
+            Return dtadd
+        Catch ex As Exception
+            Return Nothing
+        End Try
+    End Function
+
+    Public Function getCustomer(Optional ByVal isall As Boolean = True) As DataTable
+        Dim dtadd As New DataTable
+        Try
+            If isall Then
+                sqlcomm.CommandText = "Select customer_code,customer_code || ' - ' || customer_name as [customercode] from customer "
+            Else
+
+            End If
+            sqldr = sqlcomm.ExecuteReader
+            dtadd.Load(sqldr)
+            Return dtadd
+        Catch ex As Exception
+            Return Nothing
         End Try
     End Function
 End Class

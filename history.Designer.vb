@@ -22,8 +22,8 @@ Partial Class history
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
-        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.cbxtransaction = New System.Windows.Forms.ComboBox()
+        Me.dgresult = New System.Windows.Forms.DataGridView()
         Me.DateTimePicker1 = New System.Windows.Forms.DateTimePicker()
         Me.lable6 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
@@ -32,37 +32,38 @@ Partial Class history
         Me.Label4 = New System.Windows.Forms.Label()
         Me.txtsubtotal = New System.Windows.Forms.TextBox()
         Me.Label6 = New System.Windows.Forms.Label()
-        Me.TextBox3 = New System.Windows.Forms.TextBox()
         Me.lblvendorname = New System.Windows.Forms.Label()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.lblcustomername = New System.Windows.Forms.Label()
-        Me.comboBox2 = New System.Windows.Forms.ComboBox()
-        Me.txtcode = New System.Windows.Forms.TextBox()
-        Me.TextBox2 = New System.Windows.Forms.TextBox()
+        Me.cbxproductname = New System.Windows.Forms.ComboBox()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.lblitemcategory = New System.Windows.Forms.Label()
         Me.lblproductname = New System.Windows.Forms.Label()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.Txtquantity = New System.Windows.Forms.TextBox()
-        Me.btnfetch = New System.Windows.Forms.Button()
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Cbxcode = New System.Windows.Forms.ComboBox()
+        Me.Cbxitem = New System.Windows.Forms.ComboBox()
+        Me.Btnfetch = New System.Windows.Forms.Button()
+        Me.Cbxinvoiceno = New System.Windows.Forms.ComboBox()
+        Me.Cbxcustomername = New System.Windows.Forms.ComboBox()
+        Me.cbxvendorname = New System.Windows.Forms.ComboBox()
+        CType(Me.dgresult, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
-        'ComboBox1
+        'cbxtransaction
         '
-        Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Location = New System.Drawing.Point(207, 17)
-        Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(215, 21)
-        Me.ComboBox1.TabIndex = 0
+        Me.cbxtransaction.FormattingEnabled = True
+        Me.cbxtransaction.Location = New System.Drawing.Point(176, 17)
+        Me.cbxtransaction.Name = "cbxtransaction"
+        Me.cbxtransaction.Size = New System.Drawing.Size(215, 21)
+        Me.cbxtransaction.TabIndex = 0
         '
-        'DataGridView1
+        'dgresult
         '
-        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Location = New System.Drawing.Point(38, 205)
-        Me.DataGridView1.Name = "DataGridView1"
-        Me.DataGridView1.Size = New System.Drawing.Size(878, 191)
-        Me.DataGridView1.TabIndex = 2
+        Me.dgresult.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgresult.Location = New System.Drawing.Point(38, 205)
+        Me.dgresult.Name = "dgresult"
+        Me.dgresult.Size = New System.Drawing.Size(878, 191)
+        Me.dgresult.TabIndex = 2
         '
         'DateTimePicker1
         '
@@ -131,70 +132,42 @@ Partial Class history
         Me.Label6.TabIndex = 80
         Me.Label6.Text = "Invoice no."
         '
-        'TextBox3
-        '
-        Me.TextBox3.Location = New System.Drawing.Point(497, 146)
-        Me.TextBox3.Name = "TextBox3"
-        Me.TextBox3.Size = New System.Drawing.Size(122, 20)
-        Me.TextBox3.TabIndex = 84
-        '
         'lblvendorname
         '
         Me.lblvendorname.AutoSize = True
         Me.lblvendorname.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblvendorname.Location = New System.Drawing.Point(494, 126)
+        Me.lblvendorname.Location = New System.Drawing.Point(67, 47)
         Me.lblvendorname.Name = "lblvendorname"
         Me.lblvendorname.Size = New System.Drawing.Size(95, 17)
         Me.lblvendorname.TabIndex = 83
         Me.lblvendorname.Text = "Vendor Name"
         '
-        'TextBox1
-        '
-        Me.TextBox1.Location = New System.Drawing.Point(654, 147)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(122, 20)
-        Me.TextBox1.TabIndex = 86
-        '
         'lblcustomername
         '
         Me.lblcustomername.AutoSize = True
         Me.lblcustomername.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblcustomername.Location = New System.Drawing.Point(651, 127)
+        Me.lblcustomername.Location = New System.Drawing.Point(507, 126)
         Me.lblcustomername.Name = "lblcustomername"
         Me.lblcustomername.Size = New System.Drawing.Size(109, 17)
         Me.lblcustomername.TabIndex = 85
         Me.lblcustomername.Text = "Customer Name"
         '
-        'comboBox2
+        'cbxproductname
         '
-        Me.comboBox2.FormattingEnabled = True
-        Me.comboBox2.Location = New System.Drawing.Point(176, 117)
-        Me.comboBox2.Name = "comboBox2"
-        Me.comboBox2.Size = New System.Drawing.Size(121, 21)
-        Me.comboBox2.TabIndex = 92
-        '
-        'txtcode
-        '
-        Me.txtcode.Location = New System.Drawing.Point(176, 86)
-        Me.txtcode.Name = "txtcode"
-        Me.txtcode.Size = New System.Drawing.Size(100, 20)
-        Me.txtcode.TabIndex = 90
-        '
-        'TextBox2
-        '
-        Me.TextBox2.Location = New System.Drawing.Point(176, 147)
-        Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(100, 20)
-        Me.TextBox2.TabIndex = 91
+        Me.cbxproductname.FormattingEnabled = True
+        Me.cbxproductname.Location = New System.Drawing.Point(176, 148)
+        Me.cbxproductname.Name = "cbxproductname"
+        Me.cbxproductname.Size = New System.Drawing.Size(121, 21)
+        Me.cbxproductname.TabIndex = 92
         '
         'Label7
         '
         Me.Label7.AutoSize = True
         Me.Label7.Location = New System.Drawing.Point(69, 86)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(32, 13)
+        Me.Label7.Size = New System.Drawing.Size(72, 13)
         Me.Label7.TabIndex = 88
-        Me.Label7.Text = "Code"
+        Me.Label7.Text = "Product Code"
         '
         'lblitemcategory
         '
@@ -216,7 +189,7 @@ Partial Class history
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(852, 453)
+        Me.Button1.Location = New System.Drawing.Point(841, 450)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(75, 23)
         Me.Button1.TabIndex = 93
@@ -230,14 +203,64 @@ Partial Class history
         Me.Txtquantity.Size = New System.Drawing.Size(100, 20)
         Me.Txtquantity.TabIndex = 82
         '
-        'btnfetch
+        'Cbxcode
         '
-        Me.btnfetch.Location = New System.Drawing.Point(806, 145)
-        Me.btnfetch.Name = "btnfetch"
-        Me.btnfetch.Size = New System.Drawing.Size(75, 23)
-        Me.btnfetch.TabIndex = 93
-        Me.btnfetch.Text = "fetch"
-        Me.btnfetch.UseVisualStyleBackColor = True
+        Me.Cbxcode.FormattingEnabled = True
+        Me.Cbxcode.Location = New System.Drawing.Point(176, 84)
+        Me.Cbxcode.Name = "Cbxcode"
+        Me.Cbxcode.Size = New System.Drawing.Size(121, 21)
+        Me.Cbxcode.TabIndex = 0
+        '
+        'Cbxitem
+        '
+        Me.Cbxitem.AutoCompleteCustomSource.AddRange(New String() {"Cloths", "Medicine", "Auto"})
+        Me.Cbxitem.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.Cbxitem.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.Cbxitem.FormattingEnabled = True
+        Me.Cbxitem.Items.AddRange(New Object() {"Cloths", "Medicine", "Auto"})
+        Me.Cbxitem.Location = New System.Drawing.Point(176, 117)
+        Me.Cbxitem.Name = "Cbxitem"
+        Me.Cbxitem.Size = New System.Drawing.Size(121, 21)
+        Me.Cbxitem.TabIndex = 92
+        '
+        'Btnfetch
+        '
+        Me.Btnfetch.Location = New System.Drawing.Point(796, 146)
+        Me.Btnfetch.Name = "Btnfetch"
+        Me.Btnfetch.Size = New System.Drawing.Size(75, 23)
+        Me.Btnfetch.TabIndex = 93
+        Me.Btnfetch.Text = "fetch"
+        Me.Btnfetch.UseVisualStyleBackColor = True
+        '
+        'Cbxinvoiceno
+        '
+        Me.Cbxinvoiceno.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.Cbxinvoiceno.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.Cbxinvoiceno.FormattingEnabled = True
+        Me.Cbxinvoiceno.Location = New System.Drawing.Point(325, 148)
+        Me.Cbxinvoiceno.Name = "Cbxinvoiceno"
+        Me.Cbxinvoiceno.Size = New System.Drawing.Size(121, 21)
+        Me.Cbxinvoiceno.TabIndex = 92
+        '
+        'Cbxcustomername
+        '
+        Me.Cbxcustomername.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.Cbxcustomername.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.Cbxcustomername.FormattingEnabled = True
+        Me.Cbxcustomername.Location = New System.Drawing.Point(510, 154)
+        Me.Cbxcustomername.Name = "Cbxcustomername"
+        Me.Cbxcustomername.Size = New System.Drawing.Size(121, 21)
+        Me.Cbxcustomername.TabIndex = 92
+        '
+        'cbxvendorname
+        '
+        Me.cbxvendorname.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.cbxvendorname.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.cbxvendorname.FormattingEnabled = True
+        Me.cbxvendorname.Location = New System.Drawing.Point(176, 47)
+        Me.cbxvendorname.Name = "cbxvendorname"
+        Me.cbxvendorname.Size = New System.Drawing.Size(121, 21)
+        Me.cbxvendorname.TabIndex = 92
         '
         'history
         '
@@ -246,18 +269,18 @@ Partial Class history
         Me.AutoScroll = True
         Me.AutoSize = True
         Me.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.ClientSize = New System.Drawing.Size(939, 488)
-        Me.Controls.Add(Me.btnfetch)
+        Me.ClientSize = New System.Drawing.Size(993, 494)
+        Me.Controls.Add(Me.Btnfetch)
+        Me.Controls.Add(Me.cbxvendorname)
+        Me.Controls.Add(Me.Cbxcustomername)
         Me.Controls.Add(Me.Button1)
-        Me.Controls.Add(Me.comboBox2)
-        Me.Controls.Add(Me.txtcode)
-        Me.Controls.Add(Me.TextBox2)
+        Me.Controls.Add(Me.Cbxinvoiceno)
+        Me.Controls.Add(Me.Cbxitem)
+        Me.Controls.Add(Me.cbxproductname)
         Me.Controls.Add(Me.Label7)
         Me.Controls.Add(Me.lblitemcategory)
         Me.Controls.Add(Me.lblproductname)
-        Me.Controls.Add(Me.TextBox1)
         Me.Controls.Add(Me.lblcustomername)
-        Me.Controls.Add(Me.TextBox3)
         Me.Controls.Add(Me.lblvendorname)
         Me.Controls.Add(Me.Txtquantity)
         Me.Controls.Add(Me.txtsubtotal)
@@ -267,19 +290,20 @@ Partial Class history
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.DateTimePicker1)
         Me.Controls.Add(Me.lable6)
-        Me.Controls.Add(Me.DataGridView1)
+        Me.Controls.Add(Me.dgresult)
         Me.Controls.Add(Me.Label4)
-        Me.Controls.Add(Me.ComboBox1)
+        Me.Controls.Add(Me.Cbxcode)
+        Me.Controls.Add(Me.cbxtransaction)
         Me.Name = "history"
-        Me.Text = "History"
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Text = "  "
+        CType(Me.dgresult, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
 
-    Friend WithEvents ComboBox1 As ComboBox
-    Friend WithEvents DataGridView1 As DataGridView
+    Friend WithEvents cbxtransaction As ComboBox
+    Friend WithEvents dgresult As DataGridView
     Friend WithEvents DateTimePicker1 As DateTimePicker
     Friend WithEvents lable6 As Label
     Friend WithEvents Label2 As Label
@@ -288,17 +312,18 @@ Partial Class history
     Friend WithEvents Label4 As Label
     Private WithEvents txtsubtotal As TextBox
     Friend WithEvents Label6 As Label
-    Friend WithEvents TextBox3 As TextBox
     Friend WithEvents lblvendorname As Label
-    Friend WithEvents TextBox1 As TextBox
     Friend WithEvents lblcustomername As Label
-    Private WithEvents comboBox2 As ComboBox
-    Private WithEvents txtcode As TextBox
-    Private WithEvents TextBox2 As TextBox
+    Private WithEvents cbxproductname As ComboBox
     Private WithEvents Label7 As Label
     Private WithEvents lblitemcategory As Label
     Private WithEvents lblproductname As Label
     Friend WithEvents Button1 As Button
     Private WithEvents Txtquantity As TextBox
-    Friend WithEvents btnfetch As Button
+    Friend WithEvents Cbxcode As ComboBox
+    Private WithEvents Cbxitem As ComboBox
+    Friend WithEvents Btnfetch As Button
+    Private WithEvents Cbxinvoiceno As ComboBox
+    Private WithEvents Cbxcustomername As ComboBox
+    Private WithEvents cbxvendorname As ComboBox
 End Class

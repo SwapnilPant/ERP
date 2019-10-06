@@ -22,3 +22,26 @@ C:\Users\Swapnil Pant\Documents\Visual Studio 2015\Projects\ERP\ERP Trial 1\obj\
 C:\Users\Swapnil Pant\Documents\Visual Studio 2015\Projects\ERP\ERP Trial 1\obj\Debug\ERP 1.exe
 C:\Users\Swapnil Pant\Documents\Visual Studio 2015\Projects\ERP\ERP Trial 1\obj\Debug\ERP 1.xml
 C:\Users\Swapnil Pant\Documents\Visual Studio 2015\Projects\ERP\ERP Trial 1\obj\Debug\ERP 1.pdb
+C:\Users\HP\Documents\Visual Studio 2015\Projects\ERP\ERP Trial 1\bin\Debug\ERP 1.exe.config
+C:\Users\HP\Documents\Visual Studio 2015\Projects\ERP\ERP Trial 1\obj\Debug\ERP 1.exe
+C:\Users\HP\Documents\Visual Studio 2015\Projects\ERP\ERP Trial 1\obj\Debug\ERP 1.xml
+C:\Users\HP\Documents\Visual Studio 2015\Projects\ERP\ERP Trial 1\obj\Debug\ERP 1.pdb
+C:\Users\HP\Documents\Visual Studio 2015\Projects\ERP\ERP Trial 1\bin\Debug\ERP 1.exe.manifest
+C:\Users\HP\Documents\Visual Studio 2015\Projects\ERP\ERP Trial 1\bin\Debug\ERP 1.application
+C:\Users\HP\Documents\Visual Studio 2015\Projects\ERP\ERP Trial 1\bin\Debug\ERP 1.exe
+C:\Users\HP\Documents\Visual Studio 2015\Projects\ERP\ERP Trial 1\bin\Debug\ERP 1.pdb
+C:\Users\HP\Documents\Visual Studio 2015\Projects\ERP\ERP Trial 1\bin\Debug\ERP 1.xml
+C:\Users\HP\Documents\Visual Studio 2015\Projects\ERP\ERP Trial 1\bin\Debug\System.Data.SQLite.dll
+C:\Users\HP\Documents\Visual Studio 2015\Projects\ERP\ERP Trial 1\bin\Debug\System.Data.SQLite.xml
+C:\Users\HP\Documents\Visual Studio 2015\Projects\ERP\ERP Trial 1\obj\Debug\ERP_Trial_1.addstock.resources
+C:\Users\HP\Documents\Visual Studio 2015\Projects\ERP\ERP Trial 1\obj\Debug\ERP_Trial_1.Form1.resources
+C:\Users\HP\Documents\Visual Studio 2015\Projects\ERP\ERP Trial 1\obj\Debug\ERP_Trial_1.addvendor.resources
+C:\Users\HP\Documents\Visual Studio 2015\Projects\ERP\ERP Trial 1\obj\Debug\ERP_Trial_1.history.resources
+C:\Users\HP\Documents\Visual Studio 2015\Projects\ERP\ERP Trial 1\obj\Debug\ERP_Trial_1.invoiceadd.resources
+C:\Users\HP\Documents\Visual Studio 2015\Projects\ERP\ERP Trial 1\obj\Debug\ERP_Trial_1.LoginForm1.resources
+C:\Users\HP\Documents\Visual Studio 2015\Projects\ERP\ERP Trial 1\obj\Debug\ERP_Trial_1.Menu.resources
+C:\Users\HP\Documents\Visual Studio 2015\Projects\ERP\ERP Trial 1\obj\Debug\ERP_Trial_1.Resources.resources
+C:\Users\HP\Documents\Visual Studio 2015\Projects\ERP\ERP Trial 1\obj\Debug\ERP_Trial_1.taskbar.resources
+C:\Users\HP\Documents\Visual Studio 2015\Projects\ERP\ERP Trial 1\obj\Debug\ERP Trial 1.vbproj.GenerateResource.Cache
+C:\Users\HP\Documents\Visual Studio 2015\Projects\ERP\ERP Trial 1\obj\Debug\ERP 1.exe.manifest
+C:\Users\HP\Documents\Visual Studio 2015\Projects\ERP\ERP Trial 1\obj\Debug\ERP 1.application
