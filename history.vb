@@ -15,15 +15,16 @@
         If MyBase.Text = "Vendor History" Then
             dt = startdb.getVendorList(False, cbxvendorname.SelectedValue.ToString)
             dgresult.DataSource = dt
-        Else
-            For Each dr As DataRow In dt.Rows
-                strtotalamt = strtotalamt + dr("TOTAL PRICE").ToString
-                strtotalqty = strtotalqty + dr("QUANTITY").ToString
-            Next
-            Txtquantity.Text = strtotalqty
-            txtsubtotal.Text = strtotalamt
+        ElseIf MyBase.Text = "Invoice History" Then
+            dt = startdb.getInvoice(False, Cbxinvoiceno.SelectedValue.ToString, Cbxcustomername.SelectedValue.ToString)
+            dgresult.DataSource = dt
         End If
-
+        For Each dr As DataRow In dt.Rows
+            strtotalamt = strtotalamt + dr("TOTAL PRICE").ToString
+            strtotalqty = strtotalqty + dr("QUANTITY").ToString
+        Next
+        Txtquantity.Text = strtotalqty
+        txtsubtotal.Text = strtotalamt
 
     End Sub
 
@@ -33,7 +34,9 @@
         Dim dtproductlist As New DataTable
         Dim dtproductlistdb As New DataTable
         Dim dtinvoice As New DataTable
+        Dim dtinvoicedb As New DataTable
         Dim dtcustomer As New DataTable
+        Dim dtcustomerdb As New DataTable
 
         cbxproductname.ValueMember = "Product_ID"
         cbxproductname.DisplayMember = "Product_Description"
@@ -60,7 +63,7 @@
             dtvendorlist.Columns.Add("Vendor Name")
             Dim Rv As DataRow = dtvendorlist.NewRow
             Rv("Vendor Code") = Int("0")
-            Rv("Vendor Name") = "Select Product"
+            Rv("Vendor Name") = "Select Vendor"
             dtvendorlist.Rows.Add(Rv)
             dtvendorlistdb = startdb.getVendorList(False)
             dtvendorlist.Merge(dtvendorlistdb)
@@ -71,12 +74,28 @@
             Cbxcode.Enabled = False
             cbxproductname.Enabled = False
             Cbxitem.Enabled = False
-            dtinvoice = startdb.getInvoice(True)
-            dtcustomer = startdb.getCustomer(True)
+            dtinvoicedb = startdb.getInvoice(True)
+            dtcustomerdb = startdb.getCustomer(True)
             Cbxinvoiceno.DisplayMember = "invoice"
             Cbxinvoiceno.ValueMember = "invoice_number"
             Cbxcustomername.DisplayMember = "customercode"
             Cbxcustomername.ValueMember = "customer_code"
+
+            dtinvoice.Columns.Add("invoice")
+            dtinvoice.Columns.Add("invoice_number", Type.GetType("System.Int64"))
+            Dim Rv1 As DataRow = dtinvoice.NewRow
+            Rv1("invoice_number") = Int("0")
+            Rv1("invoice") = "Select Invoice"
+            dtinvoice.Rows.Add(Rv1)
+            dtcustomer.Columns.Add("customercode")
+            dtcustomer.Columns.Add("customer_code", Type.GetType("System.Int64"))
+            Dim Rv2 As DataRow = dtcustomer.NewRow
+            Rv2("customer_code") = Int("0")
+            Rv2("customercode") = "Select Customer"
+            dtcustomer.Rows.Add(Rv2)
+
+            dtcustomer.Merge(dtcustomerdb)
+            dtinvoice.Merge(dtinvoicedb)
             Cbxinvoiceno.DataSource = dtinvoice
             Cbxcustomername.DataSource = dtcustomer
         End If

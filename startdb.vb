@@ -169,14 +169,18 @@ Public Class startdb
                     sqldr = sqlcomm.ExecuteReader
                     dtadd.Load(sqldr)
                 End If
-                sqlcomm.CommandText = "select vendor_code as [Vendor Code],vendor_name || ' (' || vendor_number || ')' as [Vendor Name],vendor_number as [Vendor Number]" _
-                            & ",vendor_address as [Vendor Address],vendor_gst as [Vendor GST],vendor_email as [Email] from vendor where vendor_code = " + vendorid
+                sqlcomm.CommandText = "SELECT vdr.vendor_code AS [Vendor Code]," _
+                   & " vdr.vendor_name As [Vendor Name],vdr.vendor_number As [Vendor Number],vdr.vendor_email As [Vendor Email]," _
+                   & " stk.productname AS [Product Name],stk.description AS [Product Description],stk.unit_quantity AS QUANTITY," _
+                   & " stk.price As [TOTAL PRICE] FROM vendor vdr " _
+                   & " INNER JOIN purchase prs ON prs.vendor_code = vdr.vendor_code INNER JOIN tblstock stk ON stk.purchase_no = prs.purchase_no " _
+                   & "  where vdr.vendor_code = " + vendorid
                 sqldr = sqlcomm.ExecuteReader
                 dtadd.Load(sqldr)
             End If
             Return dtadd
         Catch ex As Exception
-            MsgBox("Error while getting vendor data")
+            MsgBox("Error While getting vendor data")
         End Try
     End Function
 
@@ -248,13 +252,26 @@ Public Class startdb
         End Try
     End Function
 
-    Public Function getInvoice(Optional ByVal isall As Boolean = True) As DataTable
+    Public Function getInvoice(Optional ByVal isall As Boolean = True, Optional ByVal invoiceno As String = "0", Optional ByVal customer_code As String = "0") As DataTable
         Dim dtadd As New DataTable
         Try
             If isall Then
-                sqlcomm.CommandText = "Select invoice_number,invoice_number as [invoice] from invoice "
-            Else
+                sqlcomm.CommandText = "Select invoice_number,cast(invoice_number as text) as [invoice] from invoice "
+            ElseIf invoiceno <> "0" Then
+                sqlcomm.CommandText = "SELECT inv.invoice_number AS [Invoice Number],inv.mode_of_payment AS [Mode Of Payement], " _
+                   & " cust.customer_name || ' - '|| cust.customer_code as [Customer],inv.tax AS [Total Tax],itm.item_code AS [Item Code],stk.productname as [Product Name], " _
+                   & " stk.description As [Description],itm.item_quantity As QUANTITY,itm.price As [TOTAL PRICE],itm.discount As [Item Discount] " _
+                & " FROM invoice inv INNER JOIN invoice_items itm ON inv.invoice_number = itm.invoice_number " _
+                  & " INNER JOIN customer cust ON cust.customer_code = inv.customer_code inner join tblstock stk on stk.item_code = itm.item_code " _
+                & "where inv.invoice_number = " + invoiceno
 
+            ElseIf customer_code <> "0" Then
+                sqlcomm.CommandText = "SELECT inv.invoice_number AS [Invoice Number],inv.mode_of_payment AS [Mode Of Payement], " _
+                   & " cust.customer_name || ' - '|| cust.customer_code as [Customer],inv.tax AS [Total Tax],itm.item_code AS [Item Code],stk.productname as [Product Name], " _
+                   & " stk.description As [Description],itm.item_quantity As QUANTITY,itm.price As [TOTAL PRICE],itm.discount As [Item Discount] " _
+                & " FROM invoice inv INNER JOIN invoice_items itm ON inv.invoice_number = itm.invoice_number " _
+                  & " INNER JOIN customer cust ON cust.customer_code = inv.customer_code inner join tblstock stk on stk.item_code = itm.item_code " _
+                & "where cust.customer_code = " + customer_code
             End If
             sqldr = sqlcomm.ExecuteReader
             dtadd.Load(sqldr)
