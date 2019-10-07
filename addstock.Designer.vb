@@ -85,11 +85,11 @@ Partial Class addstock
         '
         'cbxitemcategory
         '
-        Me.cbxitemcategory.AutoCompleteCustomSource.AddRange(New String() {"Cloths", "Medicine", "Auto"})
+        Me.cbxitemcategory.AutoCompleteCustomSource.AddRange(New String() {"Select Category", "Cloths", "Medicine", "Auto"})
         Me.cbxitemcategory.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
         Me.cbxitemcategory.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.cbxitemcategory.FormattingEnabled = True
-        Me.cbxitemcategory.Items.AddRange(New Object() {"Cloths", "Medicine", "Auto"})
+        Me.cbxitemcategory.Items.AddRange(New Object() {"Select Category", "Cloths", "Medicine", "Auto"})
         Me.cbxitemcategory.Location = New System.Drawing.Point(173, 112)
         Me.cbxitemcategory.Name = "cbxitemcategory"
         Me.cbxitemcategory.Size = New System.Drawing.Size(121, 21)

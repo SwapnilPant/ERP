@@ -65,9 +65,14 @@ Public Class startdb
         Return dt
     End Function
 
-    Public Function getProductList() As DataTable
+    Public Function getProductList(Optional ByVal productcategory As String = "0") As DataTable
         Dim dtadd As New DataTable
-        sqlcomm.CommandText = "select item_code as [Product_ID],description as [Product_Description] from tblstock"
+        If productcategory = "0" Then
+            sqlcomm.CommandText = "select item_code as [Product_ID],description as [Product_Description] from tblstock where unit_quantity > 0"
+        Else
+            sqlcomm.CommandText = "select item_code as [Product_ID],description as [Product_Description] from tblstock where " _
+                    & " unit_quantity > 0 And item_category = '" + productcategory + "'"
+        End If
         sqldr = sqlcomm.ExecuteReader
         dtadd.Load(sqldr)
         Return dtadd
@@ -102,6 +107,9 @@ Public Class startdb
             Else
                 sqlcomm.CommandText = "insert into invoice_items(item_code,invoice_number,item_quantity,item_rate,discount,price,created_date) values(" _
                                 & "'" + itemcode + "'," + invoice_no + "," + itemquantity + "," + itemrate + "," + discount + "," + price + ",'" + dateinv + "')"
+                sqlcomm.ExecuteNonQuery()
+
+                sqlcomm.CommandText = "update tblstock set unit_quantity=(select unit_quantity - " + itemquantity + " from tblstock where item_code='" + itemcode + "') where item_code='" + itemcode + "'"
                 sqlcomm.ExecuteNonQuery()
             End If
             Return True
@@ -168,15 +176,16 @@ Public Class startdb
                             & ",vendor_address as [Vendor Address],vendor_gst as [Vendor GST],vendor_email as [Email] from vendor"
                     sqldr = sqlcomm.ExecuteReader
                     dtadd.Load(sqldr)
+                Else
+                    sqlcomm.CommandText = "SELECT vdr.vendor_code AS [Vendor Code]," _
+                       & " vdr.vendor_name As [Vendor Name],prs.purchase_no as [Purchase No.],prs.vendor_invoice_no as [Bill No.]," _
+                       & " stk.productname AS [Product Name],stk.description AS [Product Description],stk.unit_quantity AS QUANTITY," _
+                       & " stk.price As [TOTAL PRICE] FROM vendor vdr " _
+                       & " INNER JOIN purchase prs ON prs.vendor_code = vdr.vendor_code INNER JOIN tblstock stk ON stk.purchase_no = prs.purchase_no " _
+                       & "  where vdr.vendor_code = " + vendorid
+                    sqldr = sqlcomm.ExecuteReader
+                    dtadd.Load(sqldr)
                 End If
-                sqlcomm.CommandText = "SELECT vdr.vendor_code AS [Vendor Code]," _
-                   & " vdr.vendor_name As [Vendor Name],vdr.vendor_number As [Vendor Number],vdr.vendor_email As [Vendor Email]," _
-                   & " stk.productname AS [Product Name],stk.description AS [Product Description],stk.unit_quantity AS QUANTITY," _
-                   & " stk.price As [TOTAL PRICE] FROM vendor vdr " _
-                   & " INNER JOIN purchase prs ON prs.vendor_code = vdr.vendor_code INNER JOIN tblstock stk ON stk.purchase_no = prs.purchase_no " _
-                   & "  where vdr.vendor_code = " + vendorid
-                sqldr = sqlcomm.ExecuteReader
-                dtadd.Load(sqldr)
             End If
             Return dtadd
         Catch ex As Exception
@@ -294,6 +303,46 @@ Public Class startdb
             Return dtadd
         Catch ex As Exception
             Return Nothing
+        End Try
+    End Function
+
+    Public Function getinventory(ByVal productcode As String, ByVal itemcategory As String) As DataTable
+        Dim dtadd As New DataTable
+        Try
+            If itemcategory <> "Select Category" Then
+                sqlcomm.CommandText = "select item_code as [Item Code],item_category as [Category]," _
+                    & " productname as [Name],description AS[Description],unit_quantity as [QUANTITY]," _
+                    & " base_unit as [UoM],unit_price as [Unit Price],price as [TOTAL PRICE] from tblstock where item_category like '" + itemcategory + "'"
+            ElseIf productcode <> "0" Then
+                sqlcomm.CommandText = "select item_code as [Item Code],item_category as [Category]," _
+                    & " productname as [Name],description AS[Description],unit_quantity as [QUANTITY]," _
+                    & " base_unit as [UoM],unit_price as [Unit Price],price as [TOTAL PRICE] from tblstock  where item_code like '" + productcode + "'"
+            Else
+                sqlcomm.CommandText = "select item_code as [Item Code],item_category as [Category]," _
+                    & " productname as [Name],description AS[Description],unit_quantity as [QUANTITY]," _
+                    & " base_unit as [UoM],unit_price as [Unit Price],price as [TOTAL PRICE] from tblstock "
+            End If
+            sqldr = sqlcomm.ExecuteReader
+            dtadd.Load(sqldr)
+            Return dtadd
+        Catch ex As Exception
+            Return Nothing
+        End Try
+    End Function
+
+    Public Function isstockavailabl(ByVal itemcode As String, ByVal qty As String) As Boolean
+        Dim dtadd As New DataTable
+        Try
+            sqlcomm.CommandText = "select unit_quantity from tblstock where item_code = '" + itemcode + "'  - " + qty
+            sqldr = sqlcomm.ExecuteReader
+            dtadd.Load(sqldr)
+            If dtadd(0)(0).ToString > 0 Then
+                Return False
+            Else
+                Return True
+            End If
+        Catch ex As Exception
+            Return True
         End Try
     End Function
 End Class

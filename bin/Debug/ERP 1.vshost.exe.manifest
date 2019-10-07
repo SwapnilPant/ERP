@@ -57,14 +57,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ERP 1.exe" size="139264">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ERP 1.exe" size="145920">
       <assemblyIdentity name="ERP 1" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>BXOclvDKntVc5bDzRh7dVHHWN1g=</dsig:DigestValue>
+        <dsig:DigestValue>ws89U296PnJl+9Z5+/sfIZ1IBQE=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

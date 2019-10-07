@@ -11,18 +11,8 @@ Public Class invoiceadd
         Try
             dtadd = startdb.setitemstructure()
             dgitemdetails.DataSource = dtadd
-            Lblinvoiceno.Text = startdb.getnextinvoiceno()
-            cbxproductname.ValueMember = "Product_ID"
-            cbxproductname.DisplayMember = "Product_Description"
-            dtprodlist.Columns.Add("Product_ID")
-            dtprodlist.Columns.Add("Product_Description")
-            Dim R As DataRow = dtprodlist.NewRow
-            R("Product_ID") = "0"
-            R("Product_Description") = "Select Product"
-            dtprodlist.Rows.Add(R)
-            dtprodlistdb = startdb.getProductList
-            dtprodlist.Merge(dtprodlistdb)
-            cbxproductname.DataSource = dtprodlist
+            Lblinvoiceno.Text = startdb.getnextinvoiceno() + 1
+            setproductcombo()
             txtdiscount.Text = 0
             txtquantity.Text = 0
         Catch ex As Exception
@@ -41,7 +31,26 @@ Public Class invoiceadd
         Me.Close()
     End Sub
 
+    Public Function setproductcombo()
+        Dim dtprodlist As New DataTable
+        Dim dtprodlistdb As New DataTable
+        cbxproductname.ValueMember = "Product_ID"
+        cbxproductname.DisplayMember = "Product_Description"
+        dtprodlist.Columns.Add("Product_ID")
+        dtprodlist.Columns.Add("Product_Description")
+        Dim R As DataRow = dtprodlist.NewRow
+        R("Product_ID") = "0"
+        R("Product_Description") = "Select Product"
+        dtprodlist.Rows.Add(R)
+        dtprodlistdb = startdb.getProductList
+        dtprodlist.Merge(dtprodlistdb)
+        cbxproductname.DataSource = dtprodlist
+    End Function
+
     Private Sub cbxproductname_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbxproductname.SelectedIndexChanged
+        If IsNothing(cbxproductname.DataSource) Then
+            Return
+        End If
         If cbxproductname.SelectedIndex <> 0 Then
             Dim dtdescription As New DataTable
             dtdescription = startdb.getProductDescription(cbxproductname.SelectedValue.ToString)
@@ -93,6 +102,8 @@ Public Class invoiceadd
         cbxtax.SelectedIndex = 0
         dgitemdetails.DataSource = Nothing
         startdb.setitemstructure()
+        cbxproductname.DataSource = Nothing
+        setproductcombo()
         lbltax.Text = 0
         txttotal.Text = 0
     End Sub
@@ -110,6 +121,10 @@ Public Class invoiceadd
         Dim strtotal As String = "0"
         Dim dt As New DataTable
         dt = startdb.getProductDescription(cbxproductname.SelectedValue.ToString)
+        If startdb.isstockavailabl(cbxproductname.SelectedValue.ToString, txtquantity.Text.ToString) Then
+            MsgBox("Enter Quantity less than in stock value")
+            Exit Function
+        End If
         If isNew Then
             dtadd.Rows.Add(cbxproductname.SelectedValue.ToString, DirectCast(cbxproductname.SelectedItem, System.Data.DataRowView).Row.ItemArray(1).ToString, dt(0)("description").ToString,
                        txtunitprice.Text.ToString, txtquantity.Text.ToString, cbxbaseunit.SelectedItem.ToString,

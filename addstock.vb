@@ -19,7 +19,7 @@
             dtadd = startdb.getstock(True)
             dgvStock.DataSource = dtadd
             cbxbaseunit.SelectedIndex = 0
-            lblpurchaseno.Text = startdb.getpurchaseno()
+            lblpurchaseno.Text = startdb.getpurchaseno() + 1
         Catch ex As Exception
 
         End Try

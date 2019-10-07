@@ -213,11 +213,11 @@ Partial Class history
         '
         'Cbxitem
         '
-        Me.Cbxitem.AutoCompleteCustomSource.AddRange(New String() {"Cloths", "Medicine", "Auto"})
+        Me.Cbxitem.AutoCompleteCustomSource.AddRange(New String() {"Select Category", "Cloths", "Medicine", "Auto"})
         Me.Cbxitem.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
         Me.Cbxitem.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.Cbxitem.FormattingEnabled = True
-        Me.Cbxitem.Items.AddRange(New Object() {"Cloths", "Medicine", "Auto"})
+        Me.Cbxitem.Items.AddRange(New Object() {"Select Category", "Cloths", "Medicine", "Auto"})
         Me.Cbxitem.Location = New System.Drawing.Point(176, 117)
         Me.Cbxitem.Name = "Cbxitem"
         Me.Cbxitem.Size = New System.Drawing.Size(121, 21)

@@ -18,6 +18,9 @@
         ElseIf MyBase.Text = "Invoice History" Then
             dt = startdb.getInvoice(False, Cbxinvoiceno.SelectedValue.ToString, Cbxcustomername.SelectedValue.ToString)
             dgresult.DataSource = dt
+        ElseIf MyBase.Text = "Inventory History" Then
+            dt = startdb.getinventory(cbxproductname.SelectedValue.ToString, Cbxitem.SelectedItem.ToString)
+            dgresult.DataSource = dt
         End If
         For Each dr As DataRow In dt.Rows
             strtotalamt = strtotalamt + dr("TOTAL PRICE").ToString
@@ -40,6 +43,8 @@
 
         cbxproductname.ValueMember = "Product_ID"
         cbxproductname.DisplayMember = "Product_Description"
+        Cbxcode.ValueMember = "Product_Description"
+        Cbxcode.DisplayMember = "Product_ID"
         dtproductlist.Columns.Add("Product_ID")
         dtproductlist.Columns.Add("Product_Description")
         Dim R As DataRow = dtproductlist.NewRow
@@ -49,6 +54,8 @@
         dtproductlistdb = startdb.getProductList()
         dtproductlist.Merge(dtproductlistdb)
         cbxproductname.DataSource = dtproductlist
+        Cbxcode.DataSource = dtproductlist
+        Cbxitem.SelectedIndex = 0
 
         If MyBase.Text = "Vendor History" Then
             cbxtransaction.Enabled = False
@@ -98,6 +105,13 @@
             dtinvoice.Merge(dtinvoicedb)
             Cbxinvoiceno.DataSource = dtinvoice
             Cbxcustomername.DataSource = dtcustomer
+        ElseIf MyBase.Text = "Inventory History" Then
+            Cbxinvoiceno.Enabled = False
+            cbxvendorname.Enabled = False
+            Cbxcustomername.Enabled = False
+            cbxtransaction.Enabled = False
+            txtsubtotal.Enabled = False
+            Txtquantity.Enabled = False
         End If
     End Sub
 
